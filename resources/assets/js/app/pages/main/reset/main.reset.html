@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="offset-md-4 col-md-4">
+            <!--<div class="card card-block">-->
+
+                <form class="card card-block">
+                    <h4 class="card-title"><i class="fa fa-key"></i> Reset Password</h4>
+
+                    <hr>
+
+                    <div class="form-group" [class.has-danger]="errors.email">
+                        <input type="text" [(ngModel)]="model.email" name="email" class="form-control"
+                               placeholder="Email">
+                        <div class="form-control-feedback" *ngIf="errors.email"
+                             [innerHTML]="errors.email.join('<br>')"></div>
+                    </div>
+
+                    <hr>
+
+                    <div class="text-xs-center">
+                        <button class="btn btn-primary" (click)="submit()">Send</button>
+                        <a class="btn btn-secondary" uiSref="signin" role="button">Back</a>
+                    </div>
+                </form>
+            <!--</div>-->
+
+        </div>
+    </div>
+</div>
