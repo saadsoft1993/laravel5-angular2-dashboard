@@ -3,8 +3,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
 import {UIRouterModule} from "ui-router-ng2";
 // import { HttpModule } from '@angular/http';
-import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
+// import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
 import {MainLoginComponent} from "./login/main.login.component";
+import {MainLogoutComponent} from "./logout/main.logout.component";
 import {MainRegisterComponent} from "./register/main.register.component";
 import {MainResetComponent} from "./reset/main.reset.component";
 import {Main404Component} from "./404/main.404.component";
@@ -35,6 +36,12 @@ import {MainHomeComponent} from "./home/main.home.component";
                     component: MainLoginComponent
                 },
                 {
+                    name: 'signout',
+                    url: '/signout',
+                    parent: 'blank',
+                    component: MainLogoutComponent
+                },
+                {
                     name: 'signup',
                     url: '/signup',
                     parent: 'blank',
@@ -62,6 +69,7 @@ import {MainHomeComponent} from "./home/main.home.component";
     declarations: [
         MainHomeComponent,
         MainLoginComponent,
+        MainLogoutComponent,
         MainRegisterComponent,
         MainResetComponent,
         Main404Component

@@ -3,7 +3,8 @@
   "scripts": {
     "start": "webpack-dev-server --progress",
     "clean": "rimraf public/*",
-    "build": "webpack --progress"
+    "build": "webpack --progress",
+    "watch": "webpack --progress --watch"
   },
   "dependencies": {
     "@angular/common": "~2.3.0",
@@ -42,6 +43,7 @@
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "*",
+    "angular2-toaster": "*",
     "zone.js": "^0.7.2"
   }
 }

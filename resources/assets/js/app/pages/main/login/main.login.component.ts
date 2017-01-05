@@ -1,44 +1,38 @@
 import {Component} from '@angular/core';
-// import {Restangular} from "ng2-restangular";
-import {Restangular} from '../../../modules/ng2-restangular';
-// import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
+import {AuthService} from "../../../services/auth.service";
+import {StateService} from "ui-router-ng2";
+// import {ToasterService} from 'angular2-toaster';
 
 @Component({
     // moduleId: module.id,
     selector: 'app-main-login',
-    templateUrl: './main.login.html'
+    templateUrl: './main.login.html',
+
+    providers: [AuthService]
 })
 export class MainLoginComponent {
 
-    model = {
-        // email: 'test',
-        // password: 'test2'
+    public model = {
+        email: '',
+        password: ''
     };
 
-    errors = {};
-    // restangular = {};
+    public errors = {};
 
-    constructor(private restangular: Restangular) {
+    public constructor(private auth: AuthService, private state: StateService) {
     }
 
-    // get diagnostic() {
-    //     return JSON.stringify(this.model);
-    // }
-
-    // ngOnInit(): void {
-        // this.restangular = Restangular;
-        // console.log(this.template);
-    // }
-
-    submit() {
-        this.errors = {
-            email: ['test error']
-        };
-
-
-        this.restangular.one('users', 2).all('accounts').getList();
-        console.log(this.model);
-        // console.log(this.restangular.one('users', 2).get());
+    public submit() {
+        this.auth
+            .login(this.model.email, this.model.password)
+            .subscribe((response) => {
+                if (response) {
+                    this.state.go('home');
+                } else {
+                    console.log('login error');
+                    // this.toaster.pop('error', 'Signin', 'Whoops, your password or email are incorrect');
+                }
+            });
     }
 
 
