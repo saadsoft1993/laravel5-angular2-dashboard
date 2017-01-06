@@ -11,6 +11,10 @@ export class AuthService {
     constructor(private restangular: Restangular) {
     }
 
+    public isAuthenticated(): boolean{
+        return !!localStorage.getItem(this.storageKey);
+    }
+
     public login(username: string, password: string): Observable<boolean> {
 
         return this.all()

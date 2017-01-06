@@ -27,30 +27,45 @@ import {MainHomeComponent} from "./home/main.home.component";
                     name: 'home',
                     url: '/',
                     parent: 'default',
+                    data:{
+                        access:'@'
+                    },
                     component: MainHomeComponent
                 },
                 {
-                    name: 'signin',
+                    name: 'login',
                     url: '/signin',
                     parent: 'blank',
+                    data:{
+                        access:'?'
+                    },
                     component: MainLoginComponent
                 },
                 {
-                    name: 'signout',
+                    name: 'logout',
                     url: '/signout',
                     parent: 'blank',
+                    data:{
+                        access:'@'
+                    },
                     component: MainLogoutComponent
                 },
                 {
-                    name: 'signup',
+                    name: 'register',
                     url: '/signup',
                     parent: 'blank',
+                    data:{
+                        access:'?'
+                    },
                     component: MainRegisterComponent
                 },
                 {
                     name: 'reset',
                     url: '/reset',
                     parent: 'blank',
+                    data:{
+                        access:'?'
+                    },
                     component: MainResetComponent
                 },
                 {

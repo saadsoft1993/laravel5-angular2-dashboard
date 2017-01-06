@@ -26,8 +26,8 @@ module.exports = webpackMerge({
         extensions: ['', '.ts', '.js']
     },
 
-    // devtool: 'source-map',
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
+    // devtool: 'cheap-module-eval-source-map',
 
     output: {
         path: __dirname + '/public',

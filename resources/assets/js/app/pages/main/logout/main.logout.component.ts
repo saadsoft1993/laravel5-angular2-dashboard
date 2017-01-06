@@ -17,7 +17,7 @@ export class MainLogoutComponent{
         private state: StateService
     ) {
         this.auth.logout();
-        this.state.go('signin');
+        this.state.go('login');
     }
 
 }

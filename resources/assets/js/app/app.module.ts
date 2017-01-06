@@ -3,17 +3,20 @@ import {NgModule}      from '@angular/core';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from "@angular/common";
 // import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
 
-import {UIRouterModule} from "ui-router-ng2";
+import {UIRouterModule, UIRouter} from "ui-router-ng2";
 import {RestangularModule} from './modules/ng2-restangular';
 // import {RestangularModule} from "ng2-restangular";
 // import { AUTH_PROVIDERS } from 'angular2-jwt';
-// import {ToasterModule, ToasterService} from 'angular2-toaster';
+import {ToasterModule} from 'angular2-toaster';
 
 import {AppComponent} from "./app.component";
 import {MainModule} from "./pages/main/main.module";
 
 import {DefaultLayout} from "./layouts/default/default.layout";
 import {BlankLayout} from "./layouts/blank/blank.layout";
+// import {AuthService} from "./services/auth.service";
+import {RouterConfig} from "./router.config";
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
     imports: [
@@ -21,35 +24,42 @@ import {BlankLayout} from "./layouts/blank/blank.layout";
         // BrowserModule,
         // HttpModule,
 
-        // ToasterModule,
+        ToasterModule,
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
                 // RestangularProvider.setBaseUrl('http://api.test.local/v1');
                 // RestangularProvider.setDefaultHeaders({'Authorization': 'Bearer UDXPx-Xko0w4BRKajozCVy20X11MRZs1'});
 
-                // RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
-                //     if (response.status === 403) {
+                RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
+                    switch (response.status) {
+                        default:
+                            this.toaster.pop('error', response.status, 'Server error');
+                            break;
 
-                        // refreshAccesstoken()
-                        //     .switchMap(refreshAccesstokenResponse => {
-                        //         //If you want to change request or make with it some actions and give the request to the repeatRequest func.
-                        //         //Or you can live it empty and request will be the same.
-                        //         return response.repeatRequest(response.request);
-                        //     })
-                        //     .subscribe(
-                        //         res => responseHandler(res),
-                        //         err => subject.error(err)
-                        //     );
+                    }
+                    //     if (response.status === 403) {
 
-                        // return false; // error handled
+                    // refreshAccesstoken()
+                    //     .switchMap(refreshAccesstokenResponse => {
+                    //         //If you want to change request or make with it some actions and give the request to the repeatRequest func.
+                    //         //Or you can live it empty and request will be the same.
+                    //         return response.repeatRequest(response.request);
+                    //     })
+                    //     .subscribe(
+                    //         res => responseHandler(res),
+                    //         err => subject.error(err)
+                    //     );
+
+                    // return false; // error handled
                     // }
                     // return true; // error not handled
-                // });
+                });
 
             }
         ),
         UIRouterModule.forChild({
+            configClass: RouterConfig,
             states: [
                 {
                     name: 'blank',
@@ -59,10 +69,8 @@ import {BlankLayout} from "./layouts/blank/blank.layout";
                 {
                     name: 'default',
                     abstract: true,
-                    // parent: 'blank',
+                    parent: 'blank',
                     component: DefaultLayout
-
-
                 }
             ]
         }),
@@ -70,9 +78,10 @@ import {BlankLayout} from "./layouts/blank/blank.layout";
     ],
 
     providers: [
+        AuthService,
         // RestangularHttp, Restangular,
         // RestangularHttp,
-        AUTH_PROVIDERS,
+        // AUTH_PROVIDERS,
         {
             provide: APP_BASE_HREF,
             useValue: '/',

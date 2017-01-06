@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {StateService} from "ui-router-ng2";
-// import {ToasterService} from 'angular2-toaster';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
     // moduleId: module.id,
@@ -19,7 +19,9 @@ export class MainLoginComponent {
 
     public errors = {};
 
-    public constructor(private auth: AuthService, private state: StateService) {
+    public constructor(private auth: AuthService,
+                       private state: StateService,
+                       private toaster: ToasterService) {
     }
 
     public submit() {
@@ -28,9 +30,9 @@ export class MainLoginComponent {
             .subscribe((response) => {
                 if (response) {
                     this.state.go('home');
+                    this.toaster.pop('success', 'Sign in', 'Login successful');
                 } else {
-                    console.log('login error');
-                    // this.toaster.pop('error', 'Signin', 'Whoops, your password or email are incorrect');
+                    this.toaster.pop('error', 'Sign in', 'Whoops, your password or email are incorrect');
                 }
             });
     }
