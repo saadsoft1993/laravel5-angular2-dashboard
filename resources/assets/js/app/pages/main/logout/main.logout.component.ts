@@ -6,7 +6,6 @@ import {StateService} from "ui-router-ng2";
     // moduleId: module.id,
     selector: 'app-main-logout',
     template: '',
-    // templateUrl: './main.logout.html',
 
     providers: [AuthService]
 })

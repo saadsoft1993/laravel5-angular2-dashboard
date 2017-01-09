@@ -29,11 +29,12 @@ export class MainLoginComponent {
             .login(this.model.email, this.model.password)
             .subscribe((response) => {
                 if (response) {
-                    this.state.go('home');
                     this.toaster.pop('success', 'Sign in', 'Login successful');
-                } else {
-                    this.toaster.pop('error', 'Sign in', 'Whoops, your password or email are incorrect');
+                    return this.state.go('home');
                 }
+
+                this.toaster.pop('error', 'Sign in', 'Whoops, your password or email are incorrect');
+                return false;
             });
     }
 

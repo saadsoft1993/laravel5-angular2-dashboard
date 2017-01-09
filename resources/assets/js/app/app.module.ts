@@ -1,12 +1,8 @@
-import {NgModule}      from '@angular/core';
-// import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from "@angular/common";
-// import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
 
-import {UIRouterModule, UIRouter} from "ui-router-ng2";
+import {UIRouterModule} from "ui-router-ng2";
 import {RestangularModule} from './modules/ng2-restangular';
-// import {RestangularModule} from "ng2-restangular";
-// import { AUTH_PROVIDERS } from 'angular2-jwt';
 import {ToasterModule} from 'angular2-toaster';
 
 import {AppComponent} from "./app.component";
@@ -14,52 +10,33 @@ import {MainModule} from "./pages/main/main.module";
 
 import {DefaultLayout} from "./layouts/default/default.layout";
 import {BlankLayout} from "./layouts/blank/blank.layout";
-// import {AuthService} from "./services/auth.service";
-import {RouterConfig} from "./router.config";
+
 import {AuthService} from "./services/auth.service";
 
 @NgModule({
     imports: [
-
-        // BrowserModule,
-        // HttpModule,
-
         ToasterModule,
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
                 // RestangularProvider.setBaseUrl('http://api.test.local/v1');
-                // RestangularProvider.setDefaultHeaders({'Authorization': 'Bearer UDXPx-Xko0w4BRKajozCVy20X11MRZs1'});
+                // let auth = injector.get(AuthService);
 
-                RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
-                    switch (response.status) {
-                        default:
-                            this.toaster.pop('error', response.status, 'Server error');
-                            break;
+                // if (auth.isAuthenticated()) {
+                //     RestangularProvider.setDefaultHeaders({'Authorization': 'Bearer ' + auth.getToken()});
+                // }
 
-                    }
-                    //     if (response.status === 403) {
-
-                    // refreshAccesstoken()
-                    //     .switchMap(refreshAccesstokenResponse => {
-                    //         //If you want to change request or make with it some actions and give the request to the repeatRequest func.
-                    //         //Or you can live it empty and request will be the same.
-                    //         return response.repeatRequest(response.request);
-                    //     })
-                    //     .subscribe(
-                    //         res => responseHandler(res),
-                    //         err => subject.error(err)
-                    //     );
-
-                    // return false; // error handled
-                    // }
-                    // return true; // error not handled
-                });
-
+                // RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params)=> {
+                //     return {
+                //         params: params,//Object.assign({}, params, {sort:"name"}),
+                //         headers: Object.assign({},headers,{'test':'test 123'}),
+                //         element: element
+                //     };
+                // });
             }
         ),
         UIRouterModule.forChild({
-            configClass: RouterConfig,
+            configClass: AuthService,
             states: [
                 {
                     name: 'blank',
@@ -79,9 +56,11 @@ import {AuthService} from "./services/auth.service";
 
     providers: [
         AuthService,
-        // RestangularHttp, Restangular,
-        // RestangularHttp,
-        // AUTH_PROVIDERS,
+        // {
+        //     provide: AuthService,
+        //     useFactory: ()=>{return true},
+        //     deps: [Restangular]
+        // },
         {
             provide: APP_BASE_HREF,
             useValue: '/',
@@ -94,6 +73,7 @@ import {AuthService} from "./services/auth.service";
     ],
 
     declarations: [
+        // AuthService,
         BlankLayout,
         DefaultLayout,
         AppComponent

@@ -2,8 +2,6 @@ import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
 import {UIRouterModule} from "ui-router-ng2";
-// import { HttpModule } from '@angular/http';
-// import { HttpModule, BaseRequestOptions, Http } from '@angular/http';
 import {MainLoginComponent} from "./login/main.login.component";
 import {MainLogoutComponent} from "./logout/main.logout.component";
 import {MainRegisterComponent} from "./register/main.register.component";
@@ -15,7 +13,6 @@ import {MainHomeComponent} from "./home/main.home.component";
     imports: [
         BrowserModule,
         FormsModule,
-        // HttpModule,
         UIRouterModule.forRoot({
             states: [
                 {

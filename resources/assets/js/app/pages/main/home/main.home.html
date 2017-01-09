@@ -1,5 +1,24 @@
 <div class="container">
     <div class="row mt-3">
-        home
+
+        <div class="col-md-12">
+
+            <p>
+                <button class="btn btn-default" (click)="submit('post')">Test api POST</button>
+                <button class="btn btn-default" (click)="submit('get')">Test api GET</button>
+                <button class="btn btn-default" (click)="submit('401')">Test api 401</button>
+                <button class="btn btn-default" (click)="submit('403')">Test api 403</button>
+                <button class="btn btn-default" (click)="submit('500')">Test api 500</button>
+            </p>
+
+            <div class="card card-block" *ngIf="!!test">
+                <h4 class="card-title">Response</h4>
+                <hr>
+
+                <code>{{test | json}}</code>
+            </div>
+
+        </div>
+
     </div>
 </div>

@@ -8,22 +8,11 @@ import {Component} from '@angular/core';
 export class MainResetComponent {
 
     model = {
-        // email: 'test',
-        // password: 'test2'
     };
 
     errors = {};
 
-    // get diagnostic() {
-    //     return JSON.stringify(this.model);
-    // }
-
     submit() {
-        // this.errors = {
-        //     email: ['test error']
-        // };
-        // console.log(this.model);
-
     }
 
 

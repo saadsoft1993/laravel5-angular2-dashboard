@@ -34,5 +34,25 @@ Route::group(
             return json_encode(false);
 //            return json_encode(['password' => ['Whoops, your password or email are incorrect']]);
         });
+
+        Route::post('test', function (Request $request) {
+            return json_encode($request->toArray());
+        });
+
+        Route::get('test', function (Request $request) {
+            return json_encode($request->toArray());
+        });
+
+        Route::get('401', function (Request $request) {
+            return response(json_encode([]), 401);
+        });
+
+        Route::get('403', function (Request $request) {
+            return response(json_encode([]), 403);
+        });
+
+        Route::get('500', function (Request $request) {
+            return response(json_encode([]), 500);
+        });
     }
 );

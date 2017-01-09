@@ -31,7 +31,8 @@ module.exports = webpackMerge({
 
     output: {
         path: __dirname + '/public',
-        publicPath: 'http://localhost:8080/', // '/'
+        publicPath: '/',
+        // publicPath: 'http://localhost:8080/',
         filename: 'js/[name].js', // 'js/[name].[hash].js',
         chunkFilename: '[id].chunk.js' // '[id].[hash].chunk.js'
     },
@@ -57,7 +58,7 @@ module.exports = webpackMerge({
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
+                loader: 'file?name=font/[name].[hash].[ext]'
             },
             {
                 test: /\.scss$/,
