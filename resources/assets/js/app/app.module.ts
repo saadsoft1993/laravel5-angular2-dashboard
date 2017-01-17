@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from "@angular/common";
 
 import {UIRouterModule} from "ui-router-ng2";
-import {RestangularModule} from './modules/ng2-restangular';
+import {RestangularModule} from 'ng2-restangular';
 import {ToasterModule} from 'angular2-toaster';
 
 import {AppComponent} from "./app.component";
@@ -19,20 +19,6 @@ import {AuthService} from "./services/auth.service";
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
-                // RestangularProvider.setBaseUrl('http://api.test.local/v1');
-                // let auth = injector.get(AuthService);
-
-                // if (auth.isAuthenticated()) {
-                //     RestangularProvider.setDefaultHeaders({'Authorization': 'Bearer ' + auth.getToken()});
-                // }
-
-                // RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params)=> {
-                //     return {
-                //         params: params,//Object.assign({}, params, {sort:"name"}),
-                //         headers: Object.assign({},headers,{'test':'test 123'}),
-                //         element: element
-                //     };
-                // });
             }
         ),
         UIRouterModule.forChild({
@@ -56,11 +42,6 @@ import {AuthService} from "./services/auth.service";
 
     providers: [
         AuthService,
-        // {
-        //     provide: AuthService,
-        //     useFactory: ()=>{return true},
-        //     deps: [Restangular]
-        // },
         {
             provide: APP_BASE_HREF,
             useValue: '/',
@@ -73,7 +54,6 @@ import {AuthService} from "./services/auth.service";
     ],
 
     declarations: [
-        // AuthService,
         BlankLayout,
         DefaultLayout,
         AppComponent

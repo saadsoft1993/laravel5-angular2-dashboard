@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Restangular} from "../modules/ng2-restangular";
+import {Restangular} from "ng2-restangular";
 import {Observable} from "rxjs";
 import {UIRouter, Transition} from "ui-router-ng2";
 import * as _ from "lodash";

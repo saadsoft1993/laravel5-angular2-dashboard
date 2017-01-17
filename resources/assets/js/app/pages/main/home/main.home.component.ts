@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Restangular} from "../../../modules/ng2-restangular/ng2-restangular";
+import {Restangular} from "ng2-restangular";
 
 @Component({
     // moduleId: module.id,
