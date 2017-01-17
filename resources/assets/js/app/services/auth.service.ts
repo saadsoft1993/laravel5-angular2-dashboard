@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Restangular} from "ng2-restangular";
 import {Observable} from "rxjs";
 
@@ -6,9 +6,12 @@ import {Observable} from "rxjs";
 export class AuthService {
 
     public storageKey = 'token';
+    public authUnauthorized$: EventEmitter<null>;
+    public authForbidden$: EventEmitter<null>;
 
     constructor(private restangular: Restangular) {
-
+        this.authUnauthorized$ = new EventEmitter();
+        this.authForbidden$ = new EventEmitter();
     }
 
     public isAuthenticated(): boolean {
@@ -24,7 +27,6 @@ export class AuthService {
     }
 
     public login(username: string, password: string): Observable<boolean> {
-
         return this.all()
             .post({username: username, password: password})
             .map((response) => {
@@ -37,11 +39,16 @@ export class AuthService {
                 this.setToken(token);
 
                 return true;
-            })
+            });
     }
 
     public logout(): void {
         localStorage.removeItem(this.storageKey);
+        this.authUnauthorized$.emit();
+    }
+
+    public forbidden(): void {
+        this.authForbidden$.emit();
     }
 
     private all() {
