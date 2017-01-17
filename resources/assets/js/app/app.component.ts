@@ -13,39 +13,41 @@ export class AppComponent implements OnInit {
     constructor(private router: UIRouter,
                 private restangular: Restangular,
                 private auth: AuthService) {
+    }
 
+    ngOnInit(): void {
         // check for authenticate
-        router.transitionService.onBefore(
+        this.router.transitionService.onBefore(
             {
                 to: (state) => !!_.get(state, 'data.access')
             },
             (transition: Transition) => {
                 switch (_.get(transition.to(), 'data.access')) {
                     case '@':
-                        if (!auth.isAuthenticated()) {
+                        if (!this.auth.isAuthenticated()) {
                             console.log('require authentication');
-                            return router.stateService.target('login');
+                            return this.router.stateService.target('login');
                         }
                         break;
 
                     case '?':
-                        if (auth.isAuthenticated()) {
+                        if (this.auth.isAuthenticated()) {
                             console.log('require guest');
-                            return router.stateService.target('home');
+                            return this.router.stateService.target('home');
                         }
                         break;
                 }
             }
         );
 
-        restangular.withConfig((RestangularConfigurer) => {
+        this.restangular.withConfig((RestangularConfigurer) => {
             RestangularConfigurer.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
                 return {
                     params: params,
                     headers: Object.assign(
                         {},
                         headers,
-                        auth.isAuthenticated() ? {'Authorization': 'Bearer ' + auth.getToken()} : {}
+                        this.auth.isAuthenticated() ? {'Authorization': 'Bearer ' + this.auth.getToken()} : {}
                     ),
                     element: element
                 };
@@ -55,13 +57,13 @@ export class AppComponent implements OnInit {
                 console.log(response);
                 switch (response.status) {
                     case 401:
-                        auth.logout();
-                        router.stateService.go('login');
+                        this.auth.logout();
+                        this.router.stateService.go('login');
                         // $rootScope.$broadcast('authUnauthorized');
                         break;
 
                     case 403:
-                        router.stateService.go('home');
+                        this.router.stateService.go('home');
                         // $rootScope.$broadcast('authForbidden');
                         break;
                     default:
@@ -71,9 +73,6 @@ export class AppComponent implements OnInit {
                 }
             });
         });
-    }
-
-    ngOnInit(): void {
     }
 
 }
