@@ -22,7 +22,6 @@ import {AuthService} from "./services/auth.service";
             }
         ),
         UIRouterModule.forChild({
-            configClass: AuthService,
             states: [
                 {
                     name: 'blank',
