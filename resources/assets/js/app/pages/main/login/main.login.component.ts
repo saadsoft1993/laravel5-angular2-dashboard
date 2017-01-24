@@ -35,6 +35,13 @@ export class MainLoginComponent {
 
                 this.toaster.pop('error', 'Sign in', 'Whoops, your password or email are incorrect');
                 return false;
+            }, (error) => {
+                let response = error.json();
+                if(response.errors){
+                    this.errors = response.errors;
+                    this.toaster.pop('error', 'Sign in', 'Enter the correct data');
+                    return false;
+                }
             });
     }
 

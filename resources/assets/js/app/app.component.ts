@@ -70,16 +70,18 @@ export class AppComponent implements OnInit {
             };
         });
 
-        RestangularConfigurer.addErrorInterceptor((response, subject, responseHandler) => {
+        RestangularConfigurer.setErrorInterceptor((response, subject, responseHandler) => {
             switch (response.status) {
                 case 401:
                     this.auth.logout();
                     break;
-
                 case 403:
                     this.auth.forbidden();
                     break;
                 default:
+                    if(/4\d{2}/.test(response.status) && response.status != '401' && response.status != '403') {
+                        return true;
+                    }
                     this.toaster.pop('error', response.status, 'Server error');
                     break;
 

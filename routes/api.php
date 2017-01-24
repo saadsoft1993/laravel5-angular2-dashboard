@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
@@ -24,35 +26,31 @@ Route::group(
 //        'middleware' => 'auth'
     ],
     function () {
-        Route::post('auth', function (Request $request) {
-//            sleep(2);
+        Route::post('auth', 'Auth\LoginController@login');
+        Route::post('register', 'Auth\RegisterController@register');
+        Route::post('reset', 'Auth\ForgotPasswordController@resetVerify');
+        Route::post('reset-confirmed', 'Auth\ResetPasswordController@resetConfirmed');
 
-            if ($request->json('username') == 'admin@site.com' && $request->json('password') == 'admin') {
-                return json_encode(['token' => str_random(32)]);
-            }
+        Route::group(['middleware' => 'jwt.auth'], function() {
+            Route::post('test', function (Request $request) {
+                return json_encode($request->toArray());
+            });
 
-            return json_encode(false);
-//            return json_encode(['password' => ['Whoops, your password or email are incorrect']]);
-        });
+            Route::get('test', function (Request $request) {
+                return json_encode($request->toArray());
+            });
 
-        Route::post('test', function (Request $request) {
-            return json_encode($request->toArray());
-        });
+            Route::get('401', function (Request $request) {
+                return response(json_encode([]), 401);
+            });
 
-        Route::get('test', function (Request $request) {
-            return json_encode($request->toArray());
-        });
+            Route::get('403', function (Request $request) {
+                return response(json_encode([]), 403);
+            });
 
-        Route::get('401', function (Request $request) {
-            return response(json_encode([]), 401);
-        });
-
-        Route::get('403', function (Request $request) {
-            return response(json_encode([]), 403);
-        });
-
-        Route::get('500', function (Request $request) {
-            return response(json_encode([]), 500);
+            Route::get('500', function (Request $request) {
+                return response(json_encode([]), 500);
+            });
         });
     }
 );

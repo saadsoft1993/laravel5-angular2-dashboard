@@ -7,6 +7,7 @@ import {MainLoginComponent} from "./login/main.login.component";
 import {MainLogoutComponent} from "./logout/main.logout.component";
 import {MainRegisterComponent} from "./register/main.register.component";
 import {MainResetComponent} from "./reset/main.reset.component";
+import {MainResetConfirmedComponent} from "./reset/main.reset.confirmed.component";
 import {Main404Component} from "./404/main.404.component";
 import {MainHomeComponent} from "./home/main.home.component";
 
@@ -67,6 +68,15 @@ import {MainHomeComponent} from "./home/main.home.component";
                     component: MainResetComponent
                 },
                 {
+                    name: 'reset-confirmed',
+                    url: '/reset-confirmed/:token',
+                    parent: 'blank',
+                    data:{
+                        access:'?'
+                    },
+                    component: MainResetConfirmedComponent
+                },
+                {
                     name: '404',
                     url: '/404',
                     parent: 'blank',
@@ -85,6 +95,7 @@ import {MainHomeComponent} from "./home/main.home.component";
         MainLogoutComponent,
         MainRegisterComponent,
         MainResetComponent,
+        MainResetConfirmedComponent,
         Main404Component
     ],
 

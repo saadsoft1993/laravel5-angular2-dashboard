@@ -26,9 +26,9 @@ export class AuthService {
         localStorage.setItem(this.storageKey, token);
     }
 
-    public login(username: string, password: string): Observable<boolean> {
+    public login(email: string, password: string): Observable<boolean> {
         return this.all()
-            .post({username: username, password: password})
+            .post({email: email, password: password})
             .map((response) => {
                 let token = response.json() && response.json().token;
 

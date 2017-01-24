@@ -2,38 +2,34 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Response;
+use JWTAuth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Validator;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:4',
+        ]);
+        if ($validator->fails()) {
+            return Response::json((['errors' => $validator->messages()]), 400);
+        }
+
+        $credentials = $request->only('email', 'password');
+        try {
+            // verify the credentials and create a token for the user
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return Response::json(['errors' => ['password' => ['Whoops, your password or email are incorrect']]], 400);
+            }
+        } catch (\JWTException $e) {
+            return Response::json(json_encode('Could not create token'), 500);
+        }
+
+        return Response::json(['token' => $token]);
     }
 }
