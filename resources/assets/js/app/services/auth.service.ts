@@ -1,6 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {Restangular} from "ng2-restangular";
 import {Observable} from "rxjs";
+import {ServiceException} from './../exception/service.exception';
 
 @Injectable()
 export class AuthService {
@@ -26,19 +27,20 @@ export class AuthService {
         localStorage.setItem(this.storageKey, token);
     }
 
-    public login(email: string, password: string): Observable<boolean> {
+    public login(email: string, password: string): Observable<any> {
         return this.all()
             .post({email: email, password: password})
             .map((response) => {
-                let token = response.json() && response.json().token;
-
+                response = response.json();
+                let token = response.token;
                 if (!token) {
-                    return false;
+                    throw new ServiceException("Invalid token");
                 }
-
                 this.setToken(token);
-
-                return true;
+                return response;
+            })
+            .catch((error) => {
+                return Observable.throw(error.json());
             });
     }
 

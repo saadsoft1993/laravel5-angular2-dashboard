@@ -4,19 +4,18 @@ import {StateService} from "ui-router-ng2";
 import {ToasterService} from 'angular2-toaster';
 
 @Component({
-    // moduleId: module.id,
     selector: 'app-main-login',
     templateUrl: './main.login.html',
-
     providers: [AuthService]
 })
+
 export class MainLoginComponent {
 
+    private title:string = 'Sign in';
     public model = {
-        email: '',
-        password: ''
+           email: '',
+           password: ''
     };
-
     public errors = {};
 
     public constructor(private auth: AuthService,
@@ -27,23 +26,14 @@ export class MainLoginComponent {
     public submit() {
         this.auth
             .login(this.model.email, this.model.password)
-            .subscribe((response) => {
-                if (response) {
-                    this.toaster.pop('success', 'Sign in', 'Login successful');
-                    return this.state.go('home');
-                }
-
-                this.toaster.pop('error', 'Sign in', 'Whoops, your password or email are incorrect');
-                return false;
+            .subscribe(() => {
+                this.toaster.pop('success', this.title, 'Login successful');
+                this.state.go('home');
             }, (error) => {
-                let response = error.json();
-                if(response.errors){
-                    this.errors = response.errors;
-                    this.toaster.pop('error', 'Sign in', 'Enter the correct data');
-                    return false;
+                if (this.errors = error.errors || error.message) {
+                    return this.toaster.pop('error', this.title, error.message ? error.message : 'Enter the correct data');
                 }
             });
     }
-
 
 }

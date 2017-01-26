@@ -11,19 +11,17 @@ import {ToasterService} from 'angular2-toaster';
 
 export class MainResetConfirmedComponent {
 
-
-    constructor(private state:StateService,
-                private toaster:ToasterService,
-                private reset:ResetService) {
+    constructor(private state: StateService,
+                private toaster: ToasterService,
+                private reset: ResetService) {
         this.params = state.params;
-
     }
 
-    public params: any;
-
+    private title = 'Reset password';
+    public params:any;
     public model = {
-        password: '',
-        repeat_password: ''
+           password: '',
+           repeat_password: ''
     }
 
     public errors = {}
@@ -31,23 +29,16 @@ export class MainResetConfirmedComponent {
     public submit() {
         this.reset
             .resetConfirmed(this.params.token, this.model.password, this.model.repeat_password)
-            .subscribe((response) => {
-                if (response.result) {
-                    this.toaster.pop('success', 'Reset password', 'Password successfully changed');
-                    return this.state.go('home');
-                }
-                this.toaster.pop('error', 'Reset password', 'Whoops, looks like something went wrong with the password reset');
-                return false;
+            .subscribe(() => {
+                this.toaster.pop('success', this.title, 'Password successfully changed');
+                this.state.go('home');
             }, (error) => {
-                let response = error.json()
-                if(response.errors.token){
-                    this.toaster.pop('error', 'Reset password', response.errors.token);
-                    return this.state.go('reset');
+                if (error.errors.token) {
+                    this.toaster.pop('error', this.title, error.errors.token);
+                    this.state.go('reset');
                 }
-                if (response.errors) {
-                    this.errors = response.errors;
-                    this.toaster.pop('error', 'Reset password', 'Enter the correct data');
-                    return false;
+                if (this.errors = error.errors) {
+                    this.toaster.pop('error', this.title, 'Enter the correct data');
                 }
             });
     }
