@@ -6,4 +6,5 @@ import {Component} from '@angular/core';
     templateUrl: './default.layout.html'
 })
 export class DefaultLayout {
+    public isCollapsedNavbar = true;
 }

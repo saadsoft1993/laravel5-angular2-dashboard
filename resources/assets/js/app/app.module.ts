@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from "@angular/common";
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UIRouterModule} from "ui-router-ng2";
 import {RestangularModule} from 'ng2-restangular';
 import {ToasterModule} from 'angular2-toaster';
@@ -21,6 +22,7 @@ import {AuthService} from "./services/auth.service";
                 RestangularProvider.setFullResponse(true);
             }
         ),
+        NgbModule.forRoot(),
         UIRouterModule.forChild({
             states: [
                 {
