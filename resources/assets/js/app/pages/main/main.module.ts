@@ -77,6 +77,15 @@ import {MainHomeComponent} from "./home/main.home.component";
                     component: MainResetConfirmedComponent
                 },
                 {
+                    name: 'admin',
+                    url: '/admin',
+                    parent: 'admin-layout',
+                    data:{
+                        access:'@'
+                    },
+                    component: MainHomeComponent
+                },
+                {
                     name: '404',
                     url: '/404',
                     parent: 'blank',
@@ -96,7 +105,7 @@ import {MainHomeComponent} from "./home/main.home.component";
         MainRegisterComponent,
         MainResetComponent,
         MainResetConfirmedComponent,
-        Main404Component
+        Main404Component,
     ],
 
     bootstrap: []

@@ -1,0 +1,90 @@
+.templateoptions {
+  position: absolute;
+  z-index: 97;
+  right: -320px;
+  top: 60px;
+  bottom: 0;
+  width: 320px;
+  background: #fff;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  @media (min-width: 544px) {
+    right: -400px;
+    width: 400px;
+  }
+  @media (min-width: 992px) {
+    z-index: 99;
+  }
+  &-toggle {
+    position: absolute;
+    top: 200px;
+    left: -45px;
+    width: 45px;
+    height: 45px;
+    line-height: 47px;
+    background-color: #fff;
+    font-size: 1.4rem;
+    color: #999;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-right: none;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: #333;
+    }
+  }
+  &.opened {
+    right: 0;
+    box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.1);
+  }
+  &-content {
+    padding: 2rem;
+    h6 {
+      margin-bottom: 1rem;
+      font-weight: normal;
+      color: #999;
+      text-transform: uppercase;
+    }
+    @media (min-width: 544px) {
+      padding: 3rem;
+    }
+  }
+  &-checkbox {
+    position: relative;
+    top: 4px
+  }
+  a, label {
+    display: block;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  label {
+    &:focus, &:hover {
+      cursor: pointer;
+    }
+    &.skin-label {
+      width: 50px;
+    }
+  }
+  .fa-cog {
+    line-height: 42px
+  }
+  .text-muted {
+    text-align: center;
+  }
+  .bg-black {
+    background-color: #333 !important;
+    color: #fff !important;
+  }
+  .bg-info {
+    background-color: #20b9ae !important;
+  }
+}
+
+.fixed-header .templateoptions {
+  position: fixed;
+}

@@ -43,7 +43,7 @@ module.exports = webpackMerge({
         stats: 'minimal',
         port: 8080,
         inline: true,
-        progress: true
+        progress: true,
     },
 
     module: {

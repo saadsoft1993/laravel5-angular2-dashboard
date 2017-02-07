@@ -1,0 +1,153 @@
+/* =================================================================
+  Skins
+================================================================= */
+/* Skin 1 */
+.skin-1 {
+  .sitebarleft {
+    background-color: #fff;
+    &-menu {
+      li > a {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      li > a:hover, li.active > a {
+        color: #333;
+      }
+    }
+    &-menutitle {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .header {
+    .navbar-left {
+      background-color: #373944;
+    }
+    .navbar {
+      background-color: #373944;
+    }
+  }
+}
+
+.skin-1 .sitebarleft .sitebarleft-menu > li.active > a,
+.skin-1.compact-sidebar .sitebarleft .sitebarleft-menu > li:hover {
+  background-color: #eee;
+}
+
+/* Skin 2 */
+.skin-2 {
+  .sitebarleft {
+    background-color: #111;
+  }
+  .header {
+    .navbar-left {
+      background-color: #e31e24;
+    }
+  }
+}
+
+/* Skin 3 */
+.skin-3 .sitebarleft {
+  background-color: #fff;
+  &-menu {
+
+    li > a {
+      color: rgba(0, 0, 0, 0.7);
+    }
+    li > a:hover, li.active > a {
+      color: #333;
+    }
+  }
+  &-menutitle {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.skin-3 .sitebarleft .sitebarleft-menu > li.active > a,
+.skin-3.compact-sidebar .sitebarleft .sitebarleft-menu > li:hover {
+  background-color: #eee;
+}
+
+.skin-3 .header .navbar-left {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Skin 4 */
+.skin-4 {
+  .sitebarleft {
+    background-color: #fff;
+    &-menu {
+      li > a {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      li > a:hover, li.active > a {
+        color: #333;
+      }
+    }
+    &-menutitle {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .header {
+    .navbar-left {
+      background-color: #fff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .navbar {
+      background-color: #373944;
+    }
+    .navbar-brand .logo {
+      background: url(../img/logo-second.png) no-repeat;
+    }
+  }
+}
+
+.skin-4 .sitebarleft .sitebarleft-menu > li.active > a,
+.skin-4.compact-sidebar .sitebarleft .sitebarleft-menu > li:hover {
+  background-color: #eee;
+}
+
+/* Skin 5 */
+.skin-5 {
+  .sitebarleft {
+    background-color: #fff;
+    &-menu {
+      li > a {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      li > a:hover, li.active > a {
+        color: #333;
+      }
+    }
+    &-menutitle {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .header {
+    .navbar-left {
+      background-color: #3e70c9;
+    }
+    .navbar {
+      background-color: #3e70c9;
+    }
+  }
+}
+
+.skin-5 .sitebarleft .sitebarleft-menu > li.active > a,
+.skin-5.compact-sidebar .sitebarleft .sitebarleft-menu > li:hover {
+  background-color: #eee;
+}
+
+/* Skin 6 */
+.skin-6 {
+  .sitebarleft {
+    background-color: #000;
+  }
+  .header {
+    .navbar-left {
+      background-color: #000;
+    }
+    .navbar {
+      background-color: #20b9ae;
+    }
+  }
+}

@@ -1,0 +1,209 @@
+.navbar {
+  padding: 1rem;
+  border-radius: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  &-toggler {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+  }
+  .header-dropdownblock {
+    margin: 0;
+    border: 1px solid #ddd;
+    i {
+      position: relative;
+      top: 1px;
+    }
+  }
+  .tag {
+    position: relative;
+    top: -1px;
+    margin-left: 0.5rem;
+    border-radius: 1rem;
+  }
+}
+
+.navbar-brand {
+  font-weight: bold;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .navbar ul > li > a .tag {
+    float: right;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar ul > li > a .tag {
+    top: -12px;
+    margin-left: 0;
+  }
+}
+
+.form-inline .input-group .form-control,
+.form-inline .input-group .input-group-addon,
+.form-inline .input-group .input-group-btn {
+  width: auto;
+}
+
+.navbar .navbar-toggleable-sm .form-inline .input-group .form-control {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .navbar .navbar-toggleable-sm .form-inline .input-group .input-group-addon,
+  .navbar .navbar-toggleable-sm .form-inline .input-group .input-group-btn {
+    width: 1%;
+  }
+}
+
+.form-inline .input-group {
+  display: inline-table;
+  vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+  .navbar .dropdown-menu {
+    position: static;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+
+.navbar-light {
+  .navbar-brand {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  .navbar-nav {
+    .nav-link {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+      color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+.navbar-light .navbar-nav {
+  .open > .nav-link, .navbar-light .navbar-nav .open > .nav-link:focus, .navbar-light .navbar-nav .open > .nav-link:hover,
+  .active > .nav-link,
+  .active > .nav-link:focus,
+  .active > .nav-link:hover,
+  .nav-link.open,
+  .nav-link.open:focus,
+  .nav-link.open:hover,
+  .nav-link.active,
+  .nav-link.active:focus,
+  .nav-link.active:hover {
+    color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.navbar-dark .navbar-toggler {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  &:focus, &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.navbar-dark .navbar-nav {
+  .open > .nav-link, .navbar-dark .navbar-nav .open > .nav-link:focus, .navbar-dark .navbar-nav .open > .nav-link:hover,
+  .active > .nav-link,
+  .active > .nav-link:focus,
+  .active > .nav-link:hover,
+  .nav-link.open,
+  .nav-link.open:focus,
+  .nav-link.open:hover,
+  .nav-link.active,
+  .nav-link.active:focus,
+  .nav-link.active:hover {
+    color: rgba(255, 255, 255, 0.9);
+    @media (max-width: 767px) {
+      color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-dark .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.5);
+    &:focus, .navbar-dark &:hover {
+      color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-full-width {
+    padding-top: 0;
+    padding-bottom: 0;
+    .navbar-nav {
+      width: 100%;
+      > li {
+        display: table-cell;
+        float: none;
+        width: 1%;
+        text-align: center;
+        > a {
+          padding-top: 0.75rem;
+          padding-bottom: 0.75rem;
+          border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        &:last-child > a {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-bottom-line {
+    padding-top: 0;
+    padding-bottom: 0;
+    .navbar-brand {
+      padding-top: 0.65rem;
+    }
+    .navbar-nav {
+      .nav-item + .nav-item {
+        margin-left: 2rem;
+      }
+      > li > a {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid transparent;
+      }
+      .active {
+        > .nav-link,
+        > .nav-link,
+        > .nav-link:hover {
+          color: #3e70c9;
+          border-color: #3e70c9;
+        }
+      }
+      .nav-link {
+        &:focus, &:hover {
+          border-color: rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+.navbar-nav .nav-link {
+  display: inline;
+}
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    display: block;
+  }
+}

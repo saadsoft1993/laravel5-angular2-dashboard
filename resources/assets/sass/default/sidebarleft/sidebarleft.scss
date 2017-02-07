@@ -1,0 +1,222 @@
+.sitebarleft {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 60px;
+  width: 220px;
+  background-color: #212330;
+  @media (max-width: 767px) {
+    left: -220px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  &-menutitle {
+    margin-top: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+  }
+  &-mainitem {
+    -moz-user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+  }
+  &-slimscroll{
+    height:92vh;
+  }
+  &-ul {
+    display: none;
+  }
+  &-menu {
+    ul {
+      display: none;
+      ul {
+        margin-left: 1rem;
+        display: none;
+      }
+      li > a {
+        -moz-user-select: none;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        padding: 0.5rem 1rem 0.5rem 3.5rem;
+      }
+    }
+
+    li {
+      position: relative;
+      > a {
+        display: block;
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+      }
+      &:hover {
+        color: #fff;
+      }
+      &.active > a {
+        color: #fff;
+      }
+    }
+    > li {
+      > a {
+        .s-icon {
+          float: left;
+          margin-right: 1.125rem;
+        }
+        .s-icon i {
+          position: relative;
+          top: 1px;
+          font-size: 1.15rem;
+        }
+        .s-text {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .tag {
+          float: right;
+          margin-top: 2px;
+          border-radius: 1rem;
+        }
+      }
+      &.active > a {
+        background-color: rgba(255, 255, 255, 0.1);
+        &:after {
+          @media (min-width: 768px) {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-top: -6px;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 6px 6px 6px 0;
+            border-right-color: #e8ebf0;
+          }
+        }
+      }
+      &.with-sub {
+        > a .s-caret {
+          float: right;
+          margin-left: 1rem;
+          font-size: 14px;
+          -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+        }
+        &.active > a .s-caret {
+          -webkit-transform: rotate(0);
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .sitebarleft-opened .sitebarleft {
+    left: 0;
+  }
+}
+
+/* Layout settings */
+.fixed-sidebar .sitebarleft {
+  position: fixed;
+}
+
+@media (min-width: 768px) {
+  .compact-sidebar {
+    .sitebarleft {
+      width: 70px !important;
+      &-menu {
+        .sitebarleft-menutitle {
+          display: none;
+        }
+        li {
+          &.compact-hide {
+            display: none;
+          }
+          > ul {
+            position: absolute;
+            top: 100%;
+            left: 70px;
+            width: 220px;
+            background: #fff;
+            border-left: none;
+          }
+          &:hover > a > .s-text {
+            display: block;
+          }
+          &:hover > ul {
+            display: block !important;
+          }
+        }
+        ul {
+          li {
+            > a {
+              padding: 0.5rem 1rem;
+              color: #777;
+              &:hover, li.active > a {
+                color: #333;
+              }
+            }
+          }
+        }
+        > li {
+          &.active > a:after {
+            display: none;
+          }
+          &:hover {
+            width: 290px;
+            background-color: #373944;
+          }
+          > a {
+            padding: 1rem 0 1rem 1.875rem;
+            .s-icon {
+              margin-right: 2.85rem;
+            }
+            .s-icon i {
+              top: 0;
+              font-size: 1.5rem;
+            }
+            > .tag {
+              position: absolute;
+              z-index: 10;
+              top: 5px;
+              left: 35px;
+            }
+            > .s-text, .s-caret {
+              display: none;
+            }
+          }
+          li > a > .s-caret {
+            color: #999;
+          }
+        }
+      }
+      //.sidebar-menu
+    }
+  }
+
+}
+.sitebarleft-menu .with-sub ul {
+  z-index: 150
+}

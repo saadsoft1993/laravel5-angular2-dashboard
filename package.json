@@ -15,9 +15,12 @@
     "@angular/platform-browser": "~2.3.0",
     "@angular/platform-browser-dynamic": "~2.3.0",
     "@angular/router": "~3.3.0",
-    "@types/lodash": "*",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.19",
+    "@types/lodash": "^4.14.46",
     "@types/node": "^6.0.45",
+    "@types/jquery": "^2.0.40",
     "angular2-template-loader": "^0.4.0",
+    "angular2-toaster": "*",
     "awesome-typescript-loader": "^2.2.4",
     "bootstrap": "^4.0.0-alpha.5",
     "core-js": "^2.4.1",
@@ -30,6 +33,7 @@
     "jquery": "^3.1.1",
     "lodash": "*",
     "ng2-restangular": "*",
+    "ng2-slimscroll": "^1.2.1",
     "node-sass": "*",
     "null-loader": "^0.1.1",
     "raw-loader": "^0.5.1",
@@ -43,7 +47,6 @@
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "*",
-    "angular2-toaster": "*",
     "zone.js": "^0.7.2"
   }
 }
