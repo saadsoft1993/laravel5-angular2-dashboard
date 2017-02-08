@@ -5,7 +5,7 @@
   top: 60px;
   bottom: 0;
   width: 350px;
-  background: #ffffff;
+  background: $sidebarright-background-color;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.2s ease-in-out;
@@ -17,13 +17,13 @@
       margin-bottom: 1rem;
       padding-right: 3rem;
       input[type=checkbox]:checked + span + span {
-        color: #999;
+        color: $sidebarright-main-color;
       }
     }
     &-title {
       margin-bottom: 1rem;
       font-weight: normal;
-      color: #999;
+      color: $sidebarright-main-color;
       text-transform: uppercase;
     }
   }
@@ -35,14 +35,14 @@
   }
   .nav-tabs {
     width: 100%;
-    background-color: #eee;
+    background-color: $sidebarright-nav-tabs-color;
     border: none;
     .nav-link.active, .nav-link.active:focus, .nav-link.active:hover {
-      color: #333;
+      color: $sidebarright-main-color-active;
     }
     .nav-link {
       padding: 0.75em 1em;
-      color: #999;
+      color: $sidebarright-main-color;
       border: none;
       border-radius: 0;
     }

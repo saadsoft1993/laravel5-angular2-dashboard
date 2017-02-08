@@ -1,10 +1,9 @@
-/* =================================================================
-  Skins
-================================================================= */
+
+
 /* Skin 1 */
 .skin-1 {
   .sitebarleft {
-    background-color: #fff;
+    background-color: $skin1-sitebarleft-color;
     &-menu {
       li > a {
         color: rgba(0, 0, 0, 0.7);
@@ -19,10 +18,10 @@
   }
   .header {
     .navbar-left {
-      background-color: #373944;
+      background-color: $skin1-header-navbarleft-color;
     }
     .navbar {
-      background-color: #373944;
+      background-color: $skin1-header-color;
     }
   }
 }
@@ -35,18 +34,18 @@
 /* Skin 2 */
 .skin-2 {
   .sitebarleft {
-    background-color: #111;
+    background-color: $skin2-sitebarleft-color;
   }
   .header {
     .navbar-left {
-      background-color: #e31e24;
+      background-color: $skin2-header-navbarleft-color;
     }
   }
 }
 
 /* Skin 3 */
 .skin-3 .sitebarleft {
-  background-color: #fff;
+  background-color: $skin3-sitebarleft-color;
   &-menu {
 
     li > a {
@@ -67,14 +66,14 @@
 }
 
 .skin-3 .header .navbar-left {
-  background-color: #fff;
+  background-color: $skin3-header-navbarleft-color;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Skin 4 */
 .skin-4 {
   .sitebarleft {
-    background-color: #fff;
+    background-color: $skin4-sitebarleft-color;
     &-menu {
       li > a {
         color: rgba(0, 0, 0, 0.7);
@@ -88,12 +87,8 @@
     }
   }
   .header {
-    .navbar-left {
-      background-color: #fff;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    .navbar {
-      background-color: #373944;
+    .navbar-left, .navbar {
+      background-color: $skin4-header-navbarleft-color;
     }
     .navbar-brand .logo {
       background: url(../img/logo-second.png) no-repeat;
@@ -109,7 +104,7 @@
 /* Skin 5 */
 .skin-5 {
   .sitebarleft {
-    background-color: #fff;
+    background-color: $skin5-sitebarleft-color;
     &-menu {
       li > a {
         color: rgba(0, 0, 0, 0.7);
@@ -123,11 +118,8 @@
     }
   }
   .header {
-    .navbar-left {
-      background-color: #3e70c9;
-    }
-    .navbar {
-      background-color: #3e70c9;
+    .navbar-left, .navbar {
+      background-color: $skin5-header-navbarleft-color;
     }
   }
 }
@@ -139,15 +131,23 @@
 
 /* Skin 6 */
 .skin-6 {
-  .sitebarleft {
-    background-color: #000;
+  .sitebarleft, .navbar-left {
+    background-color: $skin6-sitebarleft-color;
   }
   .header {
-    .navbar-left {
-      background-color: #000;
-    }
     .navbar {
-      background-color: #20b9ae;
+      background-color: $skin6-header-color;
     }
+  }
+  &-menu {
+    li > a {
+      color: rgba(0, 0, 0, 0.7);
+    }
+    li > a:hover, li.active > a {
+      color: #333;
+    }
+  }
+  &-menutitle {
+    color: rgba(0, 0, 0, 0.5);
   }
 }

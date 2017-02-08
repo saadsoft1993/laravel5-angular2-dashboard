@@ -1,6 +1,5 @@
-/* =================================================================
-  Bootstrap
-================================================================= */
+@import './_variables';
+
 .col-xs-3 {
   float: left;
   width: 25%;
@@ -97,35 +96,35 @@ a.tag {
 }
 
 .tag-primary {
-  background-color: #0275d8;
+  background-color: $brand-primary;
   &[href]:focus, &[href]:hover {
     background-color: #025aa5
   }
 }
 
 .tag-success {
-  background-color: #5cb85c;
+  background-color: $brand-success;
   &[href]:focus, &[href]:hover {
     background-color: #449d44
   }
 }
 
 .tag-info {
-  background-color: #5bc0de;
+  background-color: $brand-info;
   &[href]:focus, &[href]:hover {
     background-color: #31b0d5
   }
 }
 
 .tag-warning {
-  background-color: #f0ad4e;
+  background-color: $brand-warning;
   &[href]:focus, &[href]:hover {
     background-color: #ec971f
   }
 }
 
 .tag-danger {
-  background-color: #d9534f;
+  background-color: $brand-danger;
   &[href]:focus, &[href]:hover {
     background-color: #c9302c
   }
@@ -143,30 +142,6 @@ a.tag {
   padding-right: .7em;
   padding-left: .7em;
   border-radius: 10rem;
-}
-
-.tag-default {
-  background-color: #adb7be;
-}
-
-.tag-primary {
-  background-color: #3e70c9;
-}
-
-.tag-success {
-  background-color: #43b968;
-}
-
-.tag-info {
-  background-color: #20b9ae;
-}
-
-.tag-warning {
-  background-color: #f59345;
-}
-
-.tag-danger {
-  background-color: #f44236;
 }
 
 .tag-purple {
@@ -188,11 +163,11 @@ html, body {
 
 html {
   position: relative;
-  font-size: 13px;
+  font-size: $main-font-size;
 }
 
 body {
-  background-color: #bbc2ce;
+  background-color: $body-background-color;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -200,13 +175,13 @@ body {
   position: relative;
   overflow: hidden;
   min-height: 100%;
-  background-color: #e8ebf0;
+  background-color: $wrapper-background-color;
 }
 
 .boxed-wrapper .wrapper {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1270px;
+  max-width: $boxed-wrapper-width;
 }
 
 * {

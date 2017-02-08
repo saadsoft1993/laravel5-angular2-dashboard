@@ -1,13 +1,37 @@
 import {Component} from '@angular/core';
+import {SidebarService} from './../../../services/sidebar.service';
+import {Subscription} from 'rxjs/Subscription'
 import * as $ from 'jquery';
 
 @Component({
     selector: 'template-options',
     templateUrl: './template-options.html'
 })
-export class TemplateOptionsComponent {
+export class TemplateOptionsComponent{
 
-    public templateOptionsToggle() {
+    private toggleRightSubscription:Subscription;
+
+    constructor(private sidebarService:SidebarService) {
+    }
+
+    public ngOnInit() {
+        this.toggleRightSubscription = this.sidebarService.toggleRightSidebarEvent$
+            .subscribe((click) => {
+                this.closeOptions();
+            })
+    }
+
+    public ngOnDestroy() {
+        this.toggleRightSubscription.unsubscribe();
+    }
+
+    private closeOptions(){
+        let templateoptions = $('.templateoptions');
+        $(templateoptions).toggle();
+        $(templateoptions).removeClass('opened');
+    }
+
+    public templateOptionsToggle(){
         $('.templateoptions').toggleClass('opened');
     }
 
@@ -73,23 +97,24 @@ export class TemplateOptionsComponent {
 
     public setTemplateSkin(event) {
         let body = $('body');
-        let darkMenuButton = $('.header .navbar .navbar-left .toggle-button.dark');
-        let lightMenuButton = $('.header .navbar .navbar-left .toggle-button.light');
-        let darkMenuButtonSecond = $('.header .navbar .navbar-left .toggle-button-second.dark');
-        let lightMenuButtonSecond = $('.header .navbar .navbar-left .toggle-button-second.light');
+        let darkMenuButton = $('.toggle-button-second.dark');
+        let lightMenuButton = $('.toggle-button-second.light');
+        let darkMenuButtonSecond = $('.sidebar-toggle-second.dark');
+        let lightMenuButtonSecond = $('.sidebar-toggle-second.light');
+        console.log(lightMenuButtonSecond);
         let setting = $(event.currentTarget).val();
         $(body).removeClass(function (index, css) {
             return (css.match(/(^|\s)skin-\S+/g) || []).join(' ');
         });
 
         $(body).addClass(setting);
-        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3') {
+        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3' || setting == 'skin-6') {
             $('.header .navbar').removeClass('navbar-dark').addClass('navbar-light');
         } else {
             $('.header .navbar').removeClass('navbar-light').addClass('navbar-dark');
         }
 
-        if (setting == 'skin-3' || setting == 'skin-4') {
+        if (setting == 'skin-3' || setting == 'skin-2'|| setting == 'skin-6' || setting == 'skin-1') {
             $(darkMenuButton).removeClass('dark').addClass('light');
             $(darkMenuButtonSecond).removeClass('dark').addClass('light');
         } else {
@@ -97,7 +122,7 @@ export class TemplateOptionsComponent {
             $(lightMenuButtonSecond).removeClass('light').addClass('dark');
         }
 
-        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3') {
+        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3' ||setting == 'skin-6') {
             $(darkMenuButton).removeClass('dark').addClass('light');
             $(darkMenuButtonSecond).removeClass('dark').addClass('light');
         } else {

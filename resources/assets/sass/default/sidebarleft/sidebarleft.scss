@@ -6,7 +6,7 @@
   left: 0;
   margin-top: 60px;
   width: 220px;
-  background-color: #212330;
+  background-color: $default-sitebarleft-color;
   @media (max-width: 767px) {
     left: -220px;
     -webkit-transition: all 0.2s ease-in-out;
@@ -15,8 +15,8 @@
   &-menutitle {
     margin-top: 0.75rem;
     padding: 0.5rem 1.25rem;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: $leftmenu-items-group-title-size;
+    color: $leftmenu-items-group-title-color;
     text-transform: uppercase;
   }
   &-mainitem {
@@ -55,15 +55,16 @@
         display: block;
         position: relative;
         padding: 0.75rem 1.25rem;
-        color: rgba(255, 255, 255, 0.7);
+        color: $leftmenu-items-color;
         -webkit-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
+        &:hover {
+          color: $leftmenu-items-hover;
+        }
       }
-      &:hover {
-        color: #fff;
-      }
+
       &.active > a {
-        color: #fff;
+        color: $leftmenu-items-color-active;
       }
     }
     > li {
@@ -90,7 +91,7 @@
         }
       }
       &.active > a {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: $leftmenu-items-background-active;
         &:after {
           @media (min-width: 768px) {
             content: '';
@@ -111,7 +112,7 @@
         > a .s-caret {
           float: right;
           margin-left: 1rem;
-          font-size: 14px;
+          font-size: $leftmenu-arrow-size;
           -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
           -webkit-transition: all 0.2s ease-in-out;
@@ -173,9 +174,9 @@
           li {
             > a {
               padding: 0.5rem 1rem;
-              color: #777;
+              color: $leftmenu-items-submenu-color-compact;
               &:hover, li.active > a {
-                color: #333;
+                color: $leftmenu-items-submenu-color-compact-hover;
               }
             }
           }
@@ -186,7 +187,7 @@
           }
           &:hover {
             width: 290px;
-            background-color: #373944;
+            background-color: $leftmenu-items-compact-hover;
           }
           > a {
             padding: 1rem 0 1rem 1.875rem;
@@ -195,7 +196,7 @@
             }
             .s-icon i {
               top: 0;
-              font-size: 1.5rem;
+              font-size: $leftmenu-icon-size;
             }
             > .tag {
               position: absolute;
@@ -206,9 +207,6 @@
             > .s-text, .s-caret {
               display: none;
             }
-          }
-          li > a > .s-caret {
-            color: #999;
           }
         }
       }
