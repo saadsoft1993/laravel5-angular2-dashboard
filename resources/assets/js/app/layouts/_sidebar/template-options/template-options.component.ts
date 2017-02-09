@@ -10,15 +10,18 @@ import * as $ from 'jquery';
 export class TemplateOptionsComponent{
 
     private toggleRightSubscription:Subscription;
+    public isOpenTemplateOptions = false;
+    public isOpenTemplateOptionsButton = true;
 
     constructor(private sidebarService:SidebarService) {
     }
 
     public ngOnInit() {
         this.toggleRightSubscription = this.sidebarService.toggleRightSidebarEvent$
-            .subscribe((click) => {
+            .subscribe(() => {
                 this.closeOptions();
-            })
+            });
+
     }
 
     public ngOnDestroy() {
@@ -26,13 +29,12 @@ export class TemplateOptionsComponent{
     }
 
     private closeOptions(){
-        let templateoptions = $('.templateoptions');
-        $(templateoptions).toggle();
-        $(templateoptions).removeClass('opened');
+        this.isOpenTemplateOptionsButton = !this.isOpenTemplateOptionsButton;
+        this.isOpenTemplateOptions = false;
     }
 
     public templateOptionsToggle(){
-        $('.templateoptions').toggleClass('opened');
+        this.isOpenTemplateOptions = !this.isOpenTemplateOptions;
     }
 
     public setTemplateOption(event) {

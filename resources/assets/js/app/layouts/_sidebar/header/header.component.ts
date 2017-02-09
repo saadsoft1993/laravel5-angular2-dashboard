@@ -13,11 +13,14 @@ export class HeaderComponent implements OnInit {
     public isCollapsedNotifications = false;
     public isCollapsedSocial = false;
 
+    public isToggleOprionsButtonActive = false;
+
     constructor(private sidebarService:SidebarService) {
     }
 
     public ngOnInit() {
         /* Hide on outside click */
+
         $(document).mouseup(function (e) {
             let container = $('.templateoptions, .sidebarright, .toggle-button-second');
             if (!container.is(e.target) && container.has(e.target).length === 0) {
@@ -28,9 +31,12 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    public toggleOptions(event) {
+  
+
+
+    public toggleOptions() {
         this.sidebarService.toggleRightSidebar();
-        $(event.currentTarget).toggleClass('active');
+        this.isToggleOprionsButtonActive = !this.isToggleOprionsButtonActive;
     }
 
     public toggleCompactSidebarDesktop() {
@@ -38,14 +44,7 @@ export class HeaderComponent implements OnInit {
     }
 
     public toggleCompactSidebarMobile() {
-        let body = $('body');
-        let isOpenSitebarLeft = 'sitebarleft-opened';
-        if ($(body).hasClass(isOpenSitebarLeft)) {
-            $(body).removeClass(isOpenSitebarLeft);
-        } else {
-            $(body).addClass(isOpenSitebarLeft);
-        }
+        this.sidebarService.toggleCompactLeftSidebarMobile();
     }
-
 
 }

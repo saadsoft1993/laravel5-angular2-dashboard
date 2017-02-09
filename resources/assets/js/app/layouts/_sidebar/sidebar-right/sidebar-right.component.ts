@@ -10,6 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class SidebarRightComponent implements OnInit, OnDestroy {
 
     private toggleRightSubscription:Subscription;
+    public isOpenRightSidebar = false;
 
     constructor(private sidebarService:SidebarService) {
     }
@@ -26,6 +27,6 @@ export class SidebarRightComponent implements OnInit, OnDestroy {
     }
 
     public toggleRightSidebar() {
-        $('.sidebarright').toggleClass('opened');
+        this.isOpenRightSidebar = !this.isOpenRightSidebar;
     }
 }

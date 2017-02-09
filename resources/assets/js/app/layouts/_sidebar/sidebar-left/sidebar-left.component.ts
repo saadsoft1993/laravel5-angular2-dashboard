@@ -9,6 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class SidebarLeftComponent implements OnInit, OnDestroy{
     private toggleCompactSubscription:Subscription;
+    private toggleCompactOnMobileSubscription:Subscription;
 
     constructor(private sidebarService:SidebarService) {
     }
@@ -16,8 +17,12 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
     public ngOnInit() {
         this.matchMedia();
         this.toggleCompactSubscription = this.sidebarService.toggleCompactLeftSidebarEvent$
-            .subscribe((click) => {
+            .subscribe(() => {
                 this.toggleCompact();
+            })
+        this.toggleCompactOnMobileSubscription = this.sidebarService.toggleCompactLeftSidebarMobileEvent$
+            .subscribe(() => {
+                this.toggleCompactOnMobile();
             })
     }
 
@@ -37,6 +42,16 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
             $(body).addClass(compact);
             $('.sitebarleft li.with-sub').find('>ul').slideUp();
             $(simScrollClasses).addClass("invisible");
+        }
+    }
+
+    public toggleCompactOnMobile(){
+        let body = $('body');
+        let isOpenSitebarLeft = 'sitebarleft-opened';
+        if ($(body).hasClass(isOpenSitebarLeft)) {
+            $(body).removeClass(isOpenSitebarLeft);
+        } else {
+            $(body).addClass(isOpenSitebarLeft);
         }
     }
 

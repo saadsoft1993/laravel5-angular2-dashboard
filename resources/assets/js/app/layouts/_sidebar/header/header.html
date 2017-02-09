@@ -9,7 +9,7 @@
                  (click)="toggleCompactSidebarMobile()">
                 <span class="hamburger"></span>
             </div>
-            <div class="toggle-button-second dark float-xs-right hidden-md-up" (click)="toggleOptions($event)">
+            <div class="toggle-button-second dark float-xs-right hidden-md-up" [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
             <div class="toggle-button dark float-xs-right hidden-md-up"
@@ -24,7 +24,7 @@
                  (click)="toggleCompactSidebarDesktop()">
                 <span class="hamburger"></span>
             </div>
-            <div class="toggle-button-second light float-xs-right hidden-sm-down" (click)="toggleOptions($event)">
+            <div class="toggle-button-second light float-xs-right hidden-sm-down" [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
             <ul class="nav navbar-nav float-md-right">
