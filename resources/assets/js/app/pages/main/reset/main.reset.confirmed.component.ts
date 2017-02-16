@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ResetService} from '../../../services/reset.service.ts';
+import {ResetService} from '../../../services/reset.service';
 import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
 

@@ -9,5 +9,9 @@
     "removeComments": false,
     "lib": ["es2015", "dom"],
     "noImplicitAny": false
-  }
+  },
+  "exclude": [
+    "vendor",
+    "node_modules"
+  ]
 }

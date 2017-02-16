@@ -1,6 +1,6 @@
 let webpack = require('webpack');
 let webpackMerge = require('webpack-merge');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+//let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let fs = require('fs');
@@ -23,7 +23,7 @@ module.exports = webpackMerge({
     },
 
     resolve: {
-        extensions: ['', '.ts', '.js']
+        extensions: ['.ts', '.js']
     },
 
     devtool: 'source-map',
@@ -42,77 +42,71 @@ module.exports = webpackMerge({
         historyApiFallback: true,
         stats: 'minimal',
         port: 8080,
-        inline: true,
-        progress: true,
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.ts$/,
-                loaders: ['awesome-typescript', 'angular2-template']
+                exclude: /vendor/,
+                use: [
+                    'awesome-typescript-loader',
+                    'angular2-template-loader'
+                ]
             },
             {
                 test: /\.html$/,
-                loader: 'html'
+                use: [
+                    {loader: 'html-loader', query: {minimize: false}}
+                ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=font/[name].[hash].[ext]'
+                test: /\.(png|jpe?g|gif|ico)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'font/[name].[hash].[ext]'
+                        }
+                    }
+                ]
+            }, {
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=font/[name].[ext]'
+            }, {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=font/[name].[ext]'
+            }, {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=font/[name].[ext]'
+            }, {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader?name=font/[name].[ext]'
+            }, {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=font/[name].[ext]'
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader',
+                        'resolve-url-loader',
+                        'sass-loader?sourceMap'
+                    ]
+                })
             }
-            // {
-            //     test: /\.css$/,
-            //     loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-            // }
-
-            // {
-            //     test: /\.css$/,
-            //     exclude: __dirname + '/src/app',
-            //     loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-            // },
-            // {
-            //     test: /\.css$/,
-            //     include: __dirname + '/src/app',
-            //     loader: 'raw'
-            // }
         ]
     },
-
-    // htmlLoader: {
-    //     minimize: false // workaround for ng2
-    // },
-
     plugins: [
-        // new webpack.NoErrorsPlugin(),
-        // new webpack.optimize.DedupePlugin(),
-
-        // https://github.com/angular/angular/issues/10618
-        // new webpack.optimize.UglifyJsPlugin({
-        //     mangle: {
-        //         keep_fnames: true
-        //     }
-        // }),
-
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         'ENV': JSON.stringify(ENV)
-        //     }
-        // }),
-
-        new ExtractTextPlugin('css/[name].css', {
+        new ExtractTextPlugin({
+            filename: 'css/[name].css',
             allChunks: true
         }),
 
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
         }),
-
-        // new HtmlWebpackPlugin({
-        //     template: __dirname + '/src/dist/index.html'
-        // })
     ]
 }, localConfig);
