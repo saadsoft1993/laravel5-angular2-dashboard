@@ -49,5 +49,8 @@
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "*",
     "zone.js": "^0.7.2"
+  },
+  "devDependencies": {
+    "@types/jquery": "^2.0.40"
   }
 }

@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {ResetService} from "../../../services/reset.service";
-import {ToasterService} from "angular2-toaster";
-import {StateService} from "ui-router-ng2";
+import {Component} from '@angular/core';
+import {ResetService} from '../../../services/reset.service';
+import {ToasterService} from 'angular2-toaster';
+import {StateService} from 'ui-router-ng2';
 
 @Component({
     selector: 'app-main-reset',

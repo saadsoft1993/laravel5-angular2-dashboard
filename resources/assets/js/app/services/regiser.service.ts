@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Restangular} from "ng2-restangular";
-import {Observable} from "rxjs";
+import {Restangular} from 'ng2-restangular';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class RegisterService {

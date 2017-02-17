@@ -7,13 +7,13 @@ import * as $ from 'jquery';
     selector: 'template-options',
     templateUrl: './template-options.html'
 })
-export class TemplateOptionsComponent{
+export class TemplateOptionsComponent {
 
-    private toggleRightSubscription:Subscription;
+    private toggleRightSubscription: Subscription;
     public isOpenTemplateOptions = false;
     public isOpenTemplateOptionsButton = true;
 
-    constructor(private sidebarService:SidebarService) {
+    constructor(private sidebarService: SidebarService) {
     }
 
     public ngOnInit() {
@@ -28,12 +28,12 @@ export class TemplateOptionsComponent{
         this.toggleRightSubscription.unsubscribe();
     }
 
-    private closeOptions(){
+    private closeOptions() {
         this.isOpenTemplateOptionsButton = !this.isOpenTemplateOptionsButton;
         this.isOpenTemplateOptions = false;
     }
 
-    public templateOptionsToggle(){
+    public templateOptionsToggle() {
         this.isOpenTemplateOptions = !this.isOpenTemplateOptions;
     }
 
@@ -46,11 +46,11 @@ export class TemplateOptionsComponent{
         if ($(body).hasClass(fixedFooterClass)) {
             $(body).removeClass(fixedFooterClass);
         }
-        let setting = $(event.currentTarget).attr('name');
+        let setting: string = $(event.currentTarget).attr('name');
         if ($(body).hasClass(setting)) {
             $(body).removeClass(setting);
             if (setting == 'compact-sidebar') {
-                $('.slimscroll-grid, .slimscroll-bar').removeClass("invisible");
+                $('.slimscroll-grid, .slimscroll-bar').removeClass('invisible');
                 this.sidebarIfActive();
             }
             if (setting == fixedHeaderClass) {
@@ -65,7 +65,7 @@ export class TemplateOptionsComponent{
             $(body).addClass(setting);
             if (setting == 'compact-sidebar') {
                 $('.sitebarleft li.with-sub').find('>ul').slideUp();
-                $('.slimscroll-grid, .slimscroll-bar').addClass("invisible");
+                $('.slimscroll-grid, .slimscroll-bar').addClass('invisible');
             }
             $('.slimscroll-grid').css('opacity', 100);
             $('.slimscroll-bar').css('opacity', 100);
@@ -116,7 +116,7 @@ export class TemplateOptionsComponent{
             $('.header .navbar').removeClass('navbar-light').addClass('navbar-dark');
         }
 
-        if (setting == 'skin-3' || setting == 'skin-2'|| setting == 'skin-6' || setting == 'skin-1') {
+        if (setting == 'skin-3' || setting == 'skin-2' || setting == 'skin-6' || setting == 'skin-1') {
             $(darkMenuButton).removeClass('dark').addClass('light');
             $(darkMenuButtonSecond).removeClass('dark').addClass('light');
         } else {
@@ -124,7 +124,7 @@ export class TemplateOptionsComponent{
             $(lightMenuButtonSecond).removeClass('light').addClass('dark');
         }
 
-        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3' ||setting == 'skin-6') {
+        if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3' || setting == 'skin-6') {
             $(darkMenuButton).removeClass('dark').addClass('light');
             $(darkMenuButtonSecond).removeClass('dark').addClass('light');
         } else {
@@ -140,6 +140,7 @@ export class TemplateOptionsComponent{
             $('.sitebarleft .progress-widget').removeClass('progress-widget-light').addClass('progress-widget-dark');
         }
     }
+
     private sidebarIfActive() {
         let url;
         let element;

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ToasterConfig} from "angular2-toaster";
+import {ToasterConfig} from 'angular2-toaster';
 
 @Component({
     // moduleId: module.id,

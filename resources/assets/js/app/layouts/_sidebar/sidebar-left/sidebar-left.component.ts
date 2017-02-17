@@ -36,12 +36,12 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
         let simScrollClasses = '.slimscroll-grid, .slimscroll-bar';
         if ($(body).hasClass(compact)) {
             $(body).removeClass(compact);
-            $(simScrollClasses).removeClass("invisible");
+            $(simScrollClasses).removeClass('invisible');
             this.sidebarIfActive();
         } else {
             $(body).addClass(compact);
             $('.sitebarleft li.with-sub').find('>ul').slideUp();
-            $(simScrollClasses).addClass("invisible");
+            $(simScrollClasses).addClass('invisible');
         }
     }
 
@@ -72,7 +72,7 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
     }
     private matchMedia() {
         if (matchMedia) {
-            let mq = window.matchMedia("(min-width: 768px) and (max-width: 991px)");
+            let mq = window.matchMedia('(min-width: 768px) and (max-width: 991px)');
             mq.addListener(this.widthChangeCompact);
             this.widthChangeCompact(mq);
         }

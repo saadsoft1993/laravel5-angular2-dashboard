@@ -1,6 +1,6 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {Restangular} from "ng2-restangular";
-import {Observable} from "rxjs";
+import {Restangular} from 'ng2-restangular';
+import {Observable} from 'rxjs';
 import {ServiceException} from './../exception/service.exception';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class AuthService {
                 response = response.json();
                 let token = response.token;
                 if (!token) {
-                    throw new ServiceException("Invalid token");
+                    throw new ServiceException('Invalid token');
                 }
                 this.setToken(token);
                 return response;

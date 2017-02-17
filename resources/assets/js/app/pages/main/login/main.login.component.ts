@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../../services/auth.service";
-import {StateService} from "ui-router-ng2";
+import {AuthService} from '../../../services/auth.service';
+import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
 
 @Component({
