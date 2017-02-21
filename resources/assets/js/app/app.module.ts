@@ -24,6 +24,7 @@ import {SidebarLeftComponent} from './layouts/_sidebar/sidebar-left/sidebar-left
 import {TemplateOptionsComponent} from './layouts/_sidebar/template-options/template-options.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_STATES} from './app.states';
+import {NotFoundComponent} from './pages/404/404.component';
 
 @NgModule({
     imports: [
@@ -35,8 +36,11 @@ import {APP_STATES} from './app.states';
             }
         ),
         NgbModule.forRoot(),
-        UIRouterModule.forChild({
-            states: APP_STATES
+        UIRouterModule.forRoot({
+            states: APP_STATES,
+            otherwise: {
+                state: '404'
+            },
         }),
         MainModule,
         SlimScrollModule
@@ -60,6 +64,7 @@ import {APP_STATES} from './app.states';
         BlankLayout,
         DefaultLayout,
         AppComponent,
+        NotFoundComponent,
         //default menu
         MainSidebarComponent,
         SidebarRightComponent,
