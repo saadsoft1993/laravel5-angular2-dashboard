@@ -23,13 +23,12 @@ import {SidebarRightComponent} from './layouts/_sidebar/sidebar-right/sidebar-ri
 import {SidebarLeftComponent} from './layouts/_sidebar/sidebar-left/sidebar-left.component';
 import {TemplateOptionsComponent} from './layouts/_sidebar/template-options/template-options.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {MainUserModule} from './pages/main/user/main.user.module';
+import {APP_STATES} from './app.states';
 
 @NgModule({
     imports: [
         BrowserModule,
         ToasterModule,
-        MainUserModule,
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
@@ -37,19 +36,7 @@ import {MainUserModule} from './pages/main/user/main.user.module';
         ),
         NgbModule.forRoot(),
         UIRouterModule.forChild({
-            states: [
-                {
-                    name: 'blank',
-                    abstract: true,
-                    component: BlankLayout
-                },
-                {
-                    name: 'default',
-                    abstract: true,
-                    parent: 'blank',
-                    component: DefaultLayout
-                },
-            ]
+            states: APP_STATES
         }),
         MainModule,
         SlimScrollModule

@@ -6,7 +6,6 @@ import {MainResetComponent} from './reset/main.reset.component';
 import {MainResetConfirmedComponent} from './reset/main.reset.confirmed.component';
 import {Main404Component} from './404/main.404.component';
 import {MainHomeComponent} from './home/main.home.component';
-// import {MainUserModule} from ;
 
 
 export let MAIN_STATES: Ng2StateDeclaration[] = [
@@ -87,6 +86,6 @@ export let MAIN_STATES: Ng2StateDeclaration[] = [
     {
         name: 'users.**',
         url: '/users',
-        loadChildren:'./user/main.user.module'
+        loadChildren: './user/main.user.module#MainUserModule'
     }
 ];

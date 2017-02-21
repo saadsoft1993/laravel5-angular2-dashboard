@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --config webpack.dev-server.js",
     "clean": "rimraf public/*",
     "build": "webpack --progress",
     "watch": "webpack --progress --watch"
@@ -19,6 +19,7 @@
     "@types/jquery": "^2.0.40",
     "@types/lodash": "4.14.52",
     "@types/node": "^7.0.5",
+
     "angular2-template-loader": "^0.6.2",
     "angular2-toaster": "*",
     "awesome-typescript-loader": "^3.0.4-rc.2",
@@ -32,6 +33,7 @@
     "html-webpack-plugin": "^2.15.0",
     "jquery": "^3.1.1",
     "lodash": "*",
+    "ng-router-loader": "^2.1.0",
     "ng2-restangular": "*",
     "ng2-slimscroll": "^1.2.1",
     "node-sass": "*",
@@ -39,7 +41,7 @@
     "raw-loader": "^0.5.1",
     "resolve-url-loader": "*",
     "rimraf": "^2.5.2",
-    "rxjs": "5.1.1",
+    "rxjs": "5.2.0",
     "sass-loader": "*",
     "style-loader": "^0.13.1",
     "typescript": "~2.1.6",

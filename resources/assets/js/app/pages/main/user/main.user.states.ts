@@ -6,14 +6,13 @@ import {UserFormComponent} from './form/main.user.form.component';
 export let USER_STATES: Ng2StateDeclaration[] = [
     {
         name: 'users',
-        url: '/users/list',
+        url: '/users',
         parent: 'default',
         component: UserListComponent
     },
     {
-        name: 'user_form',
-        parent: 'default',
-        url: '/users/form',
+        name: 'users.form',
+        url: '/form',
         component: UserFormComponent
     }
 ];

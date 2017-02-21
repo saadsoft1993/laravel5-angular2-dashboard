@@ -32,16 +32,8 @@ module.exports = webpackMerge({
     output: {
         path: __dirname + '/public',
         publicPath: '/',
-        // publicPath: 'http://localhost:8080/',
         filename: 'js/[name].js', // 'js/[name].[hash].js',
-        chunkFilename: '[id].chunk.js' // '[id].[hash].chunk.js'
-    },
-
-    devServer: {
-        // compress: true,
-        historyApiFallback: true,
-        stats: 'minimal',
-        port: 8080,
+        chunkFilename: 'js/[id].chunk.js' // '[id].[hash].chunk.js'
     },
 
     module: {
@@ -50,6 +42,7 @@ module.exports = webpackMerge({
                 test: /\.ts$/,
                 exclude: /vendor/,
                 use: [
+                    'ng-router-loader',
                     'awesome-typescript-loader',
                     'angular2-template-loader'
                 ]
