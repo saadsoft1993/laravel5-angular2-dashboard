@@ -2,34 +2,30 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Response;
 use JWTAuth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Validator;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:4',
         ]);
-        if ($validator->fails()) {
-            return Response::json((['errors' => $validator->messages()]), 400);
-        }
 
         $credentials = $request->only('email', 'password');
         try {
             // verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-                return Response::json(['errors' => ['password' => ['Whoops, your password or email are incorrect']]], 400);
+                abort(401, 'Whoops, your password or email are incorrect');
             }
-        } catch (\JWTException $e) {
-            return Response::json(json_encode('Could not create token'), 500);
+        } catch (JWTException $e) {
+            abort(500, 'Could not create token');
         }
 
-        return Response::json(['token' => $token]);
+        return compact('token');
     }
 }

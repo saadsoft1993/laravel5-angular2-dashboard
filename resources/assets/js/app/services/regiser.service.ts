@@ -10,12 +10,8 @@ export class RegisterService {
     public register(name: string, email: string, password: string, password_confirmation: string):Observable<any> {
         return this.all()
             .post({name: name, email: email, password: password, password_confirmation: password_confirmation})
-            .map((response) => {
-                return response.json();
-            })
-            .catch((error) => {
-                return Observable.throw(error.json());
-            });
+            .map(response => response.body ? response.json() : true)
+            .catch(error => Observable.throw(error.json()));
     }
 
     private all() {

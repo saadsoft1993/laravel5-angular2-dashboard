@@ -30,7 +30,7 @@ export class AuthService {
     public login(email: string, password: string): Observable<any> {
         return this.all()
             .post({email: email, password: password})
-            .map((response) => {
+            .map(response => {
                 response = response.json();
                 let token = response.token;
                 if (!token) {
@@ -39,9 +39,7 @@ export class AuthService {
                 this.setToken(token);
                 return response;
             })
-            .catch((error) => {
-                return Observable.throw(error.json());
-            });
+            .catch(error => Observable.throw(error.json()));
     }
 
     public logout(): void {

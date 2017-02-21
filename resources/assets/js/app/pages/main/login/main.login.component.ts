@@ -2,25 +2,27 @@ import {Component} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
+import {ErrorHandler} from '../../../services/error-handler.service';
 
 @Component({
     selector: 'app-main-login',
     templateUrl: './main.login.html',
-    providers: [AuthService]
+    providers: [AuthService, ErrorHandler]
 })
 
 export class MainLoginComponent {
 
-    private title:string = 'Sign in';
+    private title: string = 'Sign in';
     public model = {
-           email: '',
-           password: ''
+        email: '',
+        password: ''
     };
     public errors = {};
 
     public constructor(private auth: AuthService,
                        private state: StateService,
-                       private toaster: ToasterService) {
+                       private toaster: ToasterService,
+                       private errorHandler: ErrorHandler) {
     }
 
     public submit() {
@@ -29,11 +31,9 @@ export class MainLoginComponent {
             .subscribe(() => {
                 this.toaster.pop('success', this.title, 'Login successful');
                 this.state.go('home');
-            }, (error) => {
-                if (this.errors = error.errors || error.message) {
-                    return this.toaster.pop('error', this.title, error.message ? error.message : 'Enter the correct data');
-                }
+            }, error => {
+                this.errors = error;
+                this.errorHandler.handle(error, this.title)
             });
     }
-
 }
