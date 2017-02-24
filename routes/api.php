@@ -51,6 +51,8 @@ Route::group(
             Route::get('500', function (Request $request) {
                 return response(json_encode([]), 500);
             });
+
+            Route::get('users', 'UserController@index');
         });
     }
 );

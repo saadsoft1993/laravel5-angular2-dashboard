@@ -1,0 +1,13 @@
+<table class="{{ css_class }}">
+    <thead app-table-head [columnData]="columns"></thead>
+    <tbody app-table-body [columnData]="columns" [rows]="rows"></tbody>
+    <tfoot></tfoot>
+</table>
+<ngb-pagination
+        [boundaryLinks]="true"
+        [collectionSize]="meta.total"
+        [maxSize]="10"
+        [pageSize]="meta.perPage"
+        [page]="meta.page"
+        (pageChange)="onPage($event)"
+></ngb-pagination>

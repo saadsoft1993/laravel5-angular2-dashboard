@@ -1,14 +1,15 @@
 import {Ng2StateDeclaration} from 'ui-router-ng2';
 
-import {UserListComponent} from './list/main.user.list.component';
-import {UserFormComponent} from './form/main.user.form.component';
+import {UserListComponent} from './list/user.list.component';
+import {UserFormComponent} from './form/user.form.component';
 
 export let USER_STATES: Ng2StateDeclaration[] = [
     {
         name: 'users',
-        url: '/users',
+        url: '/users?page&page_2',
         parent: 'default',
-        component: UserListComponent
+        component: UserListComponent,
+        reloadOnSearch: false
     },
     {
         name: 'users.form',

@@ -1,4 +1,4 @@
-import {Ng2StateDeclaration, loadNgModule} from 'ui-router-ng2';
+import {Ng2StateDeclaration} from 'ui-router-ng2';
 import {MainLoginComponent} from './login/main.login.component';
 import {MainLogoutComponent} from './logout/main.logout.component';
 import {MainRegisterComponent} from './register/main.register.component';
@@ -75,10 +75,5 @@ export let MAIN_STATES: Ng2StateDeclaration[] = [
             access: '@'
         },
         component: MainHomeComponent
-    },
-    {
-        name: 'users.**',
-        url: '/users',
-        loadChildren: './user/main.user.module#MainUserModule'
     }
 ];

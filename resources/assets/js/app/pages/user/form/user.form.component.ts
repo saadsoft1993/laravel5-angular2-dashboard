@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'app-main-user-form',
-    templateUrl: './main.user.form.html'
+    selector: 'app-user-form',
+    templateUrl: './user.form.html'
 })
 export class UserFormComponent {
     public constructor() {

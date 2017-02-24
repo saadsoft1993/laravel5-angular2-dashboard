@@ -25,6 +25,7 @@ import {TemplateOptionsComponent} from './layouts/_sidebar/template-options/temp
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_STATES} from './app.states';
 import {NotFoundComponent} from './pages/404/404.component';
+import {PageService} from './services/page.service';
 
 @NgModule({
     imports: [
@@ -33,6 +34,18 @@ import {NotFoundComponent} from './pages/404/404.component';
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
+
+                RestangularProvider.addResponseInterceptor((data, operation, what, url, response) => {
+                    if (operation === 'getList') {
+                        data.data._meta = {
+                            total: data.total,
+                            per_page: data.per_page,
+                            current_page: data.current_page,
+                        };
+                        return data.data;
+                    }
+                    return data;
+                });
             }
         ),
         NgbModule.forRoot(),
@@ -49,6 +62,7 @@ import {NotFoundComponent} from './pages/404/404.component';
 
     providers: [
         AuthService,
+        PageService,
         {
             provide: APP_BASE_HREF,
             useValue: '/',
