@@ -1,5 +1,7 @@
 import {NgModule}      from '@angular/core';
 import {FormsModule}   from '@angular/forms';
+import {CommonModule} from '@angular/common';
+
 import {UIRouterModule} from 'ui-router-ng2';
 
 import {MAIN_STATES} from './main.states'
@@ -10,8 +12,7 @@ import {MainRegisterComponent} from './register/main.register.component';
 import {MainResetComponent} from './reset/main.reset.component';
 import {MainResetConfirmedComponent} from './reset/main.reset.confirmed.component';
 import {MainHomeComponent} from './home/main.home.component';
-
-import {CommonModule} from '@angular/common';
+import {NotFoundComponent} from './404/404.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {CommonModule} from '@angular/common';
         MainRegisterComponent,
         MainResetComponent,
         MainResetConfirmedComponent,
+        NotFoundComponent
     ],
 
     bootstrap: []

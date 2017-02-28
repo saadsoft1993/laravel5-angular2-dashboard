@@ -5,6 +5,7 @@ import {MainRegisterComponent} from './register/main.register.component';
 import {MainResetComponent} from './reset/main.reset.component';
 import {MainResetConfirmedComponent} from './reset/main.reset.confirmed.component';
 import {MainHomeComponent} from './home/main.home.component';
+import {NotFoundComponent} from './404/404.component';
 
 
 export let MAIN_STATES: Ng2StateDeclaration[] = [
@@ -75,5 +76,11 @@ export let MAIN_STATES: Ng2StateDeclaration[] = [
             access: '@'
         },
         component: MainHomeComponent
+    },
+    {
+        name: '404',
+        url: '/404',
+        parent: 'blank',
+        component: NotFoundComponent
     }
 ];
