@@ -20,11 +20,11 @@ class JWTAuthMiddleware
         try {
             $user = JWTAuth::parseToken()->authenticate();
             if (!$user) {
-                return response(json_encode(['errors' => ['You are not authotized']]), 401);
+                abort(401,'You are not authorized');
             }
         } catch
         (JWTException $e) {
-            return response(json_encode(['errors' => ['You are not authotized']]), 401);
+            abort(401,'You are not authorized');
         }
         return $next($request);
     }
