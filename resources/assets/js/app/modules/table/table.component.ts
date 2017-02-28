@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {ColumnData} from './helpers/ColumnData';
 import {ErrorHandler} from '../../services/error-handler.service';
-import {PageService, GetData, PageMeta, PageSource} from '../../services/page.service';
+import {PageService, GetData, PageMeta, PageSource} from '../../services/page/page.service';
 import {StateService} from 'ui-router-ng2';
+import {SortItem} from '../../services/page/SortItem';
 
 @Component({
     selector: 'app-table',
@@ -56,6 +57,11 @@ export class TableComponent<T> {
         if (!this.meta.total && this.pageUrl) {
             page = this.state.params[this.pageTag] || 1
         }
+        page = page || 1;
         this.dataSource.getPage(page);
+    }
+
+    onSort(sortItem: SortItem) {
+        this.dataSource.getSorted(sortItem);
     }
 }

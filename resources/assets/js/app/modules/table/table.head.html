@@ -1,3 +1,6 @@
 <tr>
-    <th *ngFor="let col of columnData">{{ col.title }}</th>
+    <th *ngFor="let col of columnData" [ngClass]="{clickable: col.isSortable}" (click)="col.toggleSort()">
+        {{ col.title }}
+        <span *ngIf="col.isSortable" class="fa" [ngClass]="{'fa-sort': col.isDefault(), 'fa-sort-desc': col.isDesc(), 'fa-sort-asc': col.isAsc()}"></span>
+    </th>
 </tr>

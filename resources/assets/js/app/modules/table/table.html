@@ -1,5 +1,5 @@
 <table class="{{ css_class }}">
-    <thead app-table-head [columnData]="columns"></thead>
+    <thead app-table-head [columnData]="columns" (sort)="onSort($event)"></thead>
     <tbody app-table-body [columnData]="columns" [rows]="rows"></tbody>
     <tfoot></tfoot>
 </table>

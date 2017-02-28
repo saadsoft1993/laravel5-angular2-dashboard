@@ -1,0 +1,9 @@
+.clickable {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    color: $link-hover-color;
+  }
+}

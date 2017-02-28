@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ColumnData} from './helpers/ColumnData';
+import {SortItem} from '../../services/page/SortItem';
 
 @Component({
     selector: '[app-table-head]',
@@ -9,10 +10,11 @@ import {ColumnData} from './helpers/ColumnData';
 
 export class TableHeadComponent {
     @Input() columnData: ColumnData[];
-
-    constructor() {
-    }
+    @Output() sort: EventEmitter<SortItem> = new EventEmitter();
 
     ngOnInit() {
+        for(let col of this.columnData) {
+            col.setEmitter(this.sort);
+        }
     }
 }

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
-import {GetData} from '../../../services/page.service';
+import {GetData} from '../../../services/page/page.service';
 import {UserService} from '../../../services/user.service';
+import {ColumnData} from '../../../modules/table/helpers/ColumnData';
+import {SortItem} from '../../../services/page/SortItem';
 
 
 @Component({
@@ -9,13 +11,14 @@ import {UserService} from '../../../services/user.service';
     templateUrl: './user.list.html'
 })
 export class UserListComponent {
-    readonly columns: any[] = [
-        {prop: 'name', title: 'Name'},
-        {prop: 'email', title: 'Email'},
-        {prop: 'created_at', title: 'Created at'}
+    readonly columns: ColumnData[] = [
+        new ColumnData('id', 'ID'),
+        new ColumnData('name', 'Name'),
+        new ColumnData('email', 'Email'),
+        new ColumnData('created_at', 'Created at').sortable(false)
     ];
 
-    readonly tableData: GetData = (page: number) => this.userService.getAll(page);
+    readonly tableData: GetData = (page: number, perPage?:number, sort?:SortItem) => this.userService.getAll(page, sort);
 
     public constructor(private userService: UserService) {
     }

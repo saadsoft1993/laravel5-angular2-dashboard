@@ -25,7 +25,7 @@ import {TemplateOptionsComponent} from './layouts/_sidebar/template-options/temp
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_STATES} from './app.states';
 import {NotFoundComponent} from './pages/404/404.component';
-import {PageService} from './services/page.service';
+import {PageService} from './services/page/page.service';
 import {UserService} from './services/user.service';
 
 @NgModule({
