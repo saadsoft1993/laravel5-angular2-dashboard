@@ -20,10 +20,5 @@ export let APP_STATES: Ng2StateDeclaration[] = [
         url: '/404',
         parent: 'blank',
         component: NotFoundComponent
-    },
-    {
-        name: 'users.**',
-        url: '/users',
-        loadChildren: './pages/user/user.module#UserModule'
     }
 ];

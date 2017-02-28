@@ -27,11 +27,13 @@ import {APP_STATES} from './app.states';
 import {NotFoundComponent} from './pages/404/404.component';
 import {PageService} from './services/page/page.service';
 import {UserService} from './services/user.service';
+import {UserModule} from "./pages/user/user.module";
 
 @NgModule({
     imports: [
         BrowserModule,
         ToasterModule,
+        SlimScrollModule,
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');
                 RestangularProvider.setFullResponse(true);
@@ -57,8 +59,7 @@ import {UserService} from './services/user.service';
             },
         }),
         MainModule,
-        SlimScrollModule
-
+        UserModule
     ],
 
     providers: [
