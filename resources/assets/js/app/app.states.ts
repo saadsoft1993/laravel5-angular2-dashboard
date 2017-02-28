@@ -24,6 +24,6 @@ export let APP_STATES: Ng2StateDeclaration[] = [
     {
         name: 'users.**',
         url: '/users',
-        loadChildren: './pages/user/user.module#MainUserModule'
+        loadChildren: './pages/user/user.module#UserModule'
     }
 ];

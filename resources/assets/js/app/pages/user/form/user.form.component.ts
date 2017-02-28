@@ -5,8 +5,4 @@ import {Component} from '@angular/core';
     templateUrl: './user.form.html'
 })
 export class UserFormComponent {
-    public constructor() {
-        console.log('form component constructed')
-    }
-
 }

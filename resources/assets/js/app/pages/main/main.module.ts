@@ -12,7 +12,6 @@ import {MainResetConfirmedComponent} from './reset/main.reset.confirmed.componen
 import {MainHomeComponent} from './home/main.home.component';
 
 import {CommonModule} from '@angular/common';
-import {UserService} from '../user/user.service';
 
 @NgModule({
     imports: [
@@ -23,7 +22,6 @@ import {UserService} from '../user/user.service';
         })
     ],
     providers: [
-        UserService
     ],
     declarations: [
         MainHomeComponent,

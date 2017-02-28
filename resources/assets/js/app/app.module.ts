@@ -26,6 +26,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {APP_STATES} from './app.states';
 import {NotFoundComponent} from './pages/404/404.component';
 import {PageService} from './services/page.service';
+import {UserService} from './services/user.service';
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import {PageService} from './services/page.service';
     providers: [
         AuthService,
         PageService,
+        UserService,
         {
             provide: APP_BASE_HREF,
             useValue: '/',

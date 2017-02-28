@@ -17,16 +17,18 @@ export class PageSource {
     private items: any;
     private meta: PageMeta = new PageMeta;
 
-    constructor(private tag: string, private getData: GetData, private state: StateService) {
+    constructor(private tag: string, private getData: GetData, private state: StateService, private pageUrl: boolean) {
         this.items = new Subject<number>().mergeMap(page => this.getData(page)).share();
         this.items.subscribe(data => {
             this.meta.set(data._meta);
-            let params = this.state.params;
-            params[this.tag] = this.meta.page;
-            this.state.transitionTo(this.state.current, params, {
-                inherit: true,
-                notify: true,
-            })
+            if (this.pageUrl) {
+                let params = this.state.params;
+                params[this.tag] = this.meta.page;
+                this.state.transitionTo(this.state.current, params, {
+                    inherit: true,
+                    notify: true,
+                })
+            }
         });
     }
 
@@ -54,7 +56,7 @@ export class PageService {
     constructor(private state: StateService) {
     }
 
-    addObject(tag: string, getData: GetData) {
-        return new PageSource(tag, getData, this.state);
+    getObject(tag: string, getData: GetData, pageUrl: boolean) {
+        return new PageSource(tag, getData, this.state, pageUrl);
     }
 }

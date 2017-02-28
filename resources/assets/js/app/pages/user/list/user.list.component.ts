@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {UserService} from '../user.service';
 import {GetData} from '../../../services/page.service';
+import {UserService} from '../../../services/user.service';
 
 
 @Component({
@@ -15,13 +15,8 @@ export class UserListComponent {
         {prop: 'created_at', title: 'Created at'}
     ];
 
-    readonly pageTag: string = 'page';
-
     readonly tableData: GetData = (page: number) => this.userService.getAll(page);
 
     public constructor(private userService: UserService) {
-    }
-
-    public ngOnInit() {
     }
 }

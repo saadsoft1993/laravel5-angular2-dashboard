@@ -6,7 +6,7 @@ import {UserFormComponent} from './form/user.form.component';
 export let USER_STATES: Ng2StateDeclaration[] = [
     {
         name: 'users',
-        url: '/users?page&page_2',
+        url: '/users',
         parent: 'default',
         component: UserListComponent,
         reloadOnSearch: false
