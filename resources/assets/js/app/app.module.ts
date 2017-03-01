@@ -22,10 +22,10 @@ import {SidebarLeftComponent} from './layouts/_sidebar/sidebar-left/sidebar-left
 import {TemplateOptionsComponent} from './layouts/_sidebar/template-options/template-options.component';
 
 import {APP_STATES} from './app.states';
-import {PageService} from './services/page/page.service';
 import {UserService} from './services/user.service';
 import {UserModule} from "./pages/user/user.module";
 import {AuthService} from './services/auth.service';
+import {PaginatorModule} from './modules/paginator/paginator.module';
 
 @NgModule({
     imports: [
@@ -55,12 +55,12 @@ import {AuthService} from './services/auth.service';
             otherwise: '404',
         }),
         MainModule,
-        UserModule
+        UserModule,
+        PaginatorModule
     ],
 
     providers: [
         AuthService,
-        PageService,
         UserService,
         {
             provide: APP_BASE_HREF,

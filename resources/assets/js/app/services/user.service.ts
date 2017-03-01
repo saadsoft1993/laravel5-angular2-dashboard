@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Restangular} from 'ng2-restangular';
-import {SortItem} from './page/SortItem';
+import {SortItem} from '../modules/paginator/SortItem';
 
 @Injectable()
 export class UserService {

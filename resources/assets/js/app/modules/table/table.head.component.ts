@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ColumnData} from './helpers/ColumnData';
-import {SortItem} from '../../services/page/SortItem';
+import {SortItem} from '../paginator/SortItem';
 
 @Component({
     selector: '[app-table-head]',

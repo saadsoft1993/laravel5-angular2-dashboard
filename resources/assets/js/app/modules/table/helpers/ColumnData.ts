@@ -1,5 +1,5 @@
 import {EventEmitter} from '@angular/core';
-import {SortItem} from '../../../services/page/SortItem';
+import {SortItem} from '../../paginator/SortItem';
 
 export class ColumnData {
     public isSortable: boolean = true;

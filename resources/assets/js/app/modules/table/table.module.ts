@@ -6,8 +6,8 @@ import {TableHeadComponent} from './table.head.component';
 import {TableBodyComponent} from './table.body.component';
 import {TableRowComponent} from './table.row.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-import {PageService} from '../../services/page/page.service';
 import {RouterModule} from '@angular/router';
+import {PageService} from '../paginator/page.service';
 
 
 @NgModule({

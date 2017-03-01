@@ -1,9 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {ColumnData} from './helpers/ColumnData';
 import {ErrorHandler} from '../../services/error-handler.service';
-import {PageService, GetData, PageMeta, PageSource} from '../../services/page/page.service';
 import {StateService} from 'ui-router-ng2';
-import {SortItem} from '../../services/page/SortItem';
+import {GetData} from '../paginator/GetData';
+import {PageMeta} from '../paginator/PageMeta';
+import {PageSource} from '../paginator/PageSource';
+import {PageService} from '../paginator/page.service';
+import {SortItem} from '../paginator/SortItem';
 
 @Component({
     selector: 'app-table',

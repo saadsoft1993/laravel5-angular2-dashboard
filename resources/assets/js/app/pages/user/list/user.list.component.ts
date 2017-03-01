@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {GetData} from '../../../services/page/page.service';
 import {UserService} from '../../../services/user.service';
 import {ColumnData} from '../../../modules/table/helpers/ColumnData';
-import {SortItem} from '../../../services/page/SortItem';
+import {GetData} from '../../../modules/paginator/GetData';
+import {SortItem} from '../../../modules/paginator/SortItem';
 
 
 @Component({
