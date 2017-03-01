@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UIRouter, Transition, TargetState} from 'ui-router-ng2';
 import {Restangular} from 'ng2-restangular';
 import * as _ from 'lodash';
-import {AuthService} from './services/auth.service';
+import {AuthService} from './main/services/auth.service';
 import {ToasterService} from 'angular2-toaster';
 
 @Component({
