@@ -17,7 +17,7 @@ export class UserListComponent {
         new ColumnData('created_at', 'Created at').sortable(false)
     ];
 
-    readonly tableData: GetData = (page: number, perPage?:number, sort?:SortItem) => this.userService.getAll(page, sort);
+    readonly tableData: GetData = params => this.userService.getAll(params);
 
     public constructor(private userService: UserService) {
     }

@@ -9,7 +9,8 @@
                  (click)="toggleCompactSidebarMobile()">
                 <span class="hamburger"></span>
             </div>
-            <div class="toggle-button-second dark float-xs-right hidden-md-up" [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
+            <div class="toggle-button-second dark float-xs-right hidden-md-up"
+                 [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
             <div class="toggle-button dark float-xs-right hidden-md-up"
@@ -24,7 +25,8 @@
                  (click)="toggleCompactSidebarDesktop()">
                 <span class="hamburger"></span>
             </div>
-            <div class="toggle-button-second light float-xs-right hidden-sm-down" [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
+            <div class="toggle-button-second light float-xs-right hidden-sm-down"
+                 [ngClass]="{'active': isToggleOprionsButtonActive}" (click)="toggleOptions($event)">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
             <ul class="nav navbar-nav float-md-right">
@@ -100,12 +102,7 @@
                 <!--</li>-->
             </ul>
             <div class="header-form float-md-left ml-md-2">
-                <form>
-                    <input class="form-control b-a" placeholder="Search for..." type="text">
-                    <button type="submit" class="btn bg-white b-a-0">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
+                <app-search-bar [placeholder]="'Search for...'"></app-search-bar>
             </div>
         </div>
     </nav>

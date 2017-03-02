@@ -10,6 +10,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         return User::orderBy($request->get('orderBy', 'id'), $request->get('orderDir', 'desc'))
+            ->search($request->get('query'))
             ->paginate($request->get('perPage', 10));
     }
 }

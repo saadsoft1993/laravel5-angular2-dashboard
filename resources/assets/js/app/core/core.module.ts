@@ -16,11 +16,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UIRouterModule} from 'ui-router-ng2';
 import {CORE_STATES} from './core.states';
 import {PageService} from './services/page/page.service';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
     imports: [
         ToasterModule,
-        CommonModule,
+        SharedModule,
         SlimScrollModule,
         RestangularModule.forRoot((RestangularProvider) => {
                 RestangularProvider.setBaseUrl('/api/v1');

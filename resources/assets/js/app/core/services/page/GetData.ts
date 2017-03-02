@@ -1,6 +1,13 @@
 import {Observable} from 'rxjs';
 import {SortItem} from './SortItem';
 
+export interface GetDataParams {
+    page: number,
+    perPage?: number,
+    sort?: SortItem,
+    query?: string
+}
+
 export interface GetData {
-    (page: number, perPage?: number, sort?: SortItem): Observable<any[]>
+    (params: GetDataParams): Observable<any[]>
 }

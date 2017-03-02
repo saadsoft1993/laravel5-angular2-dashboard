@@ -7,27 +7,33 @@ import {PageMeta} from './PageMeta';
 export class PageSource {
     private items: any;
     private sortSource: any;
+    private searchSource: any;
     private meta: PageMeta = new PageMeta;
     private sort: SortItem;
     private pageStream = new Subject<number>();
+    private query: string;
 
     constructor(private tag: string, private getData: GetData, private state: StateService, private pageUrl: boolean) {
         this.sortSource = new Subject<SortItem>()
             .debounceTime(100)
             .map(sortItem => {
                 this.sort = sortItem;
-                return {sort: sortItem, page: 1};
+                return {sort: sortItem, page: 1, query: this.query};
+            });
+
+        this.searchSource = new Subject<string>()
+            .map(query => {
+                this.query = query;
+                return {sort: this.sort, page: 1, query: query}
             });
 
         this.items = this.pageStream
             .map(page => {
                 this.meta.page = page;
-                return {sort: this.sort, page: page};
+                return {sort: this.sort, page: page, query: this.query};
             })
-            .merge(this.sortSource)
-            .mergeMap(params => {
-                return this.getData(params.page, this.meta.perPage, params.sort)
-            })
+            .merge(this.sortSource, this.searchSource)
+            .mergeMap(params => this.getData(params))
             .share();
 
         this.items.subscribe(data => {
@@ -44,11 +50,19 @@ export class PageSource {
     }
 
     getPage(page: number) {
+        if (!this.meta.total && this.pageUrl) {
+            page = this.state.params[this.tag] || 1
+        }
+        page = page || 1;
         this.pageStream.next(page);
     }
 
     getSorted(dir: SortItem) {
         this.sortSource.next(dir);
+    }
+
+    getSearch(query: string) {
+        this.searchSource.next(query);
     }
 
     getMeta() {

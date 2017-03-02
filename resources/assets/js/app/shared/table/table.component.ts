@@ -54,17 +54,18 @@ export class TableComponent<T> {
         this.dataSource = this.pageService.getObject(this.pageTag, this.getData, this.pageUrl);
         this.meta = this.dataSource.getMeta();
         this.dataSource.getDataSource().subscribe(data => this.rows = data, err => this.errorHandler.handle(err, 'Error'))
+        this.onPage();
     }
 
-    onPage(page) {
-        if (!this.meta.total && this.pageUrl) {
-            page = this.state.params[this.pageTag] || 1
-        }
-        page = page || 1;
+    onPage(page?:number) {
         this.dataSource.getPage(page);
     }
 
     onSort(sortItem: SortItem) {
         this.dataSource.getSorted(sortItem);
+    }
+
+    onSearch(query:string) {
+        this.dataSource.getSearch(query);
     }
 }

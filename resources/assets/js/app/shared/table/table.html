@@ -1,9 +1,11 @@
+<app-search-bar (search)="onSearch($event)" [placeholder]="'Search users'"></app-search-bar>
 <table class="{{ css_class }}">
     <thead app-table-head [columnData]="columns" (sort)="onSort($event)"></thead>
     <tbody app-table-body [columnData]="columns" [rows]="rows"></tbody>
     <tfoot></tfoot>
 </table>
 <ngb-pagination
+        *ngIf="meta.total > meta.perPage"
         [boundaryLinks]="true"
         [collectionSize]="meta.total"
         [maxSize]="10"

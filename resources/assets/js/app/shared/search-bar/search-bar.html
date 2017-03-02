@@ -1,0 +1,6 @@
+<form class="search-bar" (ngSubmit)="search.emit(searchQuery.value)">
+    <input #searchQuery class="form-control b-a" placeholder="{{ placeholder }}" type="text" (input)="queryChange.emit(searchQuery.value)">
+    <button type="submit" class="btn bg-white b-a-0">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </button>
+</form>

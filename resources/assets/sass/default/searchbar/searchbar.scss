@@ -1,0 +1,12 @@
+.search-bar {
+  position: relative;
+
+  .btn {
+    cursor: pointer;
+    height: 90%;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    color: #999;
+  }
+}
