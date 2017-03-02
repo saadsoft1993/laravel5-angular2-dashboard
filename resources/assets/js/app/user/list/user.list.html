@@ -1,8 +1,13 @@
 <div class="container">
-    <app-table
-            [css_class]="'table table-striped'"
-            [columns]="columns"
-            [getData]="tableData"
-    >
-    </app-table>
+    <ui-view>
+        <button class="btn btn-primary" uiSref="users.form">Create new user</button>
+        <hr>
+        <app-table
+                [css_class]="'table table-striped'"
+                [columns]="columns"
+                [getData]="tableData"
+                [pageTag]="'users'"
+        >
+        </app-table>
+    </ui-view>
 </div>

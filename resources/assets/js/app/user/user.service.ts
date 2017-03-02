@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Restangular} from 'ng2-restangular';
 import {GetDataParams} from '../core/services/page/GetData';
 import {Observable} from 'rxjs';
+import {User} from './user.model';
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,14 @@ export class UserService {
         return this.all()
             .getList(obj)
             .map(data => data.data);
+    }
+
+    public create(user: User) {
+        return this.all()
+            .post(user)
+            .map(response => response.body ? response.json() : true)
+            .catch(error => Observable.throw(error.json()));
+
     }
 
     private all() {

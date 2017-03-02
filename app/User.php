@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    const VALIDATION_RULES = [
+        'name' => 'required|min:3',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:4|confirmed',
+    ];
+
 
     /**
      * The attributes that are mass assignable.
@@ -41,7 +47,8 @@ class User extends Authenticatable
     {
         if($search) {
             return $query->orWhere('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('id', $search);
         }
     }
 }

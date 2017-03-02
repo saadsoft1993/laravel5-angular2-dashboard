@@ -28,9 +28,9 @@ export class TableComponent<T> {
     @Input() public columns: ColumnData[];
 
     /**
-     * URL parameter
+     * URL parameter / PageSource object key in PageService
      */
-    @Input() public pageTag?: string;
+    @Input() public pageTag: string;
 
     /**
      * Callback used to retrieve data
@@ -51,7 +51,7 @@ export class TableComponent<T> {
     }
 
     ngOnInit() {
-        this.dataSource = this.pageService.getObject(this.pageTag, this.getData, this.pageUrl);
+        this.dataSource = this.pageService.createObject(this.pageTag, this.getData, this.pageUrl);
         this.meta = this.dataSource.getMeta();
         this.dataSource.getDataSource().subscribe(data => this.rows = data, err => this.errorHandler.handle(err, 'Error'))
         this.onPage();

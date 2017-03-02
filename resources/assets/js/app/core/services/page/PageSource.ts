@@ -22,6 +22,7 @@ export class PageSource {
             });
 
         this.searchSource = new Subject<string>()
+            .debounceTime(300)
             .map(query => {
                 this.query = query;
                 return {sort: this.sort, page: 1, query: query}

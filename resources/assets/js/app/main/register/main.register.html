@@ -29,11 +29,11 @@
                              [innerHTML]="errors.password.join('<br>')"></div>
                     </div>
 
-                    <div class="form-group" [class.has-danger]="errors.repeat_password">
-                        <input type="password" [(ngModel)]="model.repeat_password" name="repeat_password" class="form-control"
+                    <div class="form-group" [class.has-danger]="errors.password_confirmation">
+                        <input type="password" [(ngModel)]="model.password_confirmation" name="repeat_password" class="form-control"
                                placeholder="Repeat password">
-                        <div class="form-control-feedback" *ngIf="errors.repeat_password"
-                             [innerHTML]="errors.repeat_password.join('<br>')"></div>
+                        <div class="form-control-feedback" *ngIf="errors.password_confirmation"
+                             [innerHTML]="errors.password_confirmation.join('<br>')"></div>
                     </div>
 
                     <hr>

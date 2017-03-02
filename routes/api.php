@@ -52,7 +52,8 @@ Route::group(
                 return response(json_encode([]), 500);
             });
 
-            Route::get('users', 'UserController@index');
+            Route::resource('users', 'UserController', ['only' => ['index', 'store']]);
+
         });
     }
 );

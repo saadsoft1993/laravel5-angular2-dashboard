@@ -6,10 +6,17 @@ import {PageSource} from './PageSource';
 @Injectable()
 export class PageService {
 
+    private objects: {[index: string]: PageSource} = {};
+
     constructor(private state: StateService) {
     }
 
-    getObject(tag: string, getData: GetData, pageUrl: boolean) {
-        return new PageSource(tag, getData, this.state, pageUrl);
+    createObject(tag: string, getData: GetData, pageUrl: boolean) {
+        this.objects[tag] = new PageSource(tag, getData, this.state, pageUrl);
+        return this.objects[tag];
+    }
+
+    getObject(tag: string) {
+        return this.objects[tag];
     }
 }

@@ -3,6 +3,7 @@ import {RegisterService} from '../services/regiser.service';
 import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
 import {ErrorHandler} from '../../core/services/error-handler.service';
+import {User} from '../../user/user.model';
 
 @Component({
     selector: 'app-main-register',
@@ -12,12 +13,7 @@ import {ErrorHandler} from '../../core/services/error-handler.service';
 export class MainRegisterComponent {
 
     private title = 'Sign up';
-    public model = {
-        name: '',
-        email: '',
-        password: '',
-        repeat_password: ''
-    };
+    public model: User = new User;
     public errors = {};
 
     public constructor(private register: RegisterService,
@@ -28,7 +24,7 @@ export class MainRegisterComponent {
 
     public submit() {
         this.register
-            .register(this.model.name, this.model.email, this.model.password, this.model.repeat_password)
+            .register(this.model)
             .subscribe(() => {
                 this.toaster.pop('success', this.title, 'Registration successful');
                 this.state.go('login');

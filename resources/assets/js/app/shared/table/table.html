@@ -1,4 +1,4 @@
-<app-search-bar (search)="onSearch($event)" [placeholder]="'Search users'"></app-search-bar>
+<app-search-bar (queryChange)="onSearch($event)" [placeholder]="'Search users'"></app-search-bar>
 <table class="{{ css_class }}">
     <thead app-table-head [columnData]="columns" (sort)="onSort($event)"></thead>
     <tbody app-table-body [columnData]="columns" [rows]="rows"></tbody>
