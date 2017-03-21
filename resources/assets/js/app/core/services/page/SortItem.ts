@@ -5,7 +5,7 @@ export class SortItem {
 
     private dir: string = SortItem.Default;
 
-    constructor(public prop: string) {
+    constructor(public prop?: string) {
     }
 
     public next() {

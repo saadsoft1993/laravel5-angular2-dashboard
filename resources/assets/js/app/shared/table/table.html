@@ -1,7 +1,7 @@
 <app-search-bar (queryChange)="onSearch($event)" [placeholder]="'Search users'"></app-search-bar>
 <table class="{{ css_class }}">
-    <thead app-table-head [columnData]="columns" (sort)="onSort($event)"></thead>
-    <tbody app-table-body [columnData]="columns" [rows]="rows"></tbody>
+    <thead app-table-head [columnSettings]="columns" (sort)="onSort($event)"></thead>
+    <tbody app-table-body [columnSettings]="columns" [rows]="rows"></tbody>
     <tfoot></tfoot>
 </table>
 <ngb-pagination

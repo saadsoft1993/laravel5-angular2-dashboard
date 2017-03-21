@@ -5,6 +5,7 @@ import {UserListComponent} from './list/user.list.component';
 import {UserFormComponent} from './form/user.form.component';
 import {UserService} from './user.service';
 import {SharedModule} from '../shared/shared.module';
+import {TableEscapedDataComponent} from './list/table.escaped-data.component';
 
 @NgModule({
     imports: [
@@ -14,10 +15,11 @@ import {SharedModule} from '../shared/shared.module';
     exports: [],
     declarations: [
         UserListComponent,
-        UserFormComponent
+        UserFormComponent,
+        TableEscapedDataComponent
     ],
     providers: [UserService],
-    entryComponents: [UserFormComponent]
+    entryComponents: [UserFormComponent, TableEscapedDataComponent]
 })
 export class UserModule {
 }

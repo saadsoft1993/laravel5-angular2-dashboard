@@ -1,5 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {ColumnData} from './helpers/ColumnData';
+import {Component, Input, ContentChildren, ViewChildren, QueryList, ViewContainerRef} from '@angular/core';
 import {ErrorHandler} from '../../core/services/error-handler.service';
 import {StateService} from 'ui-router-ng2';
 import {GetData} from '../../core/services/page/GetData';
@@ -7,6 +6,8 @@ import {PageMeta} from '../../core/services/page/PageMeta';
 import {PageSource} from '../../core/services/page/PageSource';
 import {PageService} from '../../core/services/page/page.service';
 import {SortItem} from '../../core/services/page/SortItem';
+import {ColumnSettings} from './helpers/ColumnSettings';
+import {ContentChild, ViewChild} from '@angular/core/src/metadata/di';
 
 @Component({
     selector: 'app-table',
@@ -25,7 +26,7 @@ export class TableComponent<T> {
     /**
      * Array of table columns
      */
-    @Input() public columns: ColumnData[];
+    @Input() public columns: ColumnSettings[];
 
     /**
      * URL parameter / PageSource object key in PageService
@@ -51,6 +52,7 @@ export class TableComponent<T> {
     }
 
     ngOnInit() {
+
         this.dataSource = this.pageService.createObject(this.pageTag, this.getData, this.pageUrl);
         this.meta = this.dataSource.getMeta();
         this.dataSource.getDataSource().subscribe(data => this.rows = data, err => this.errorHandler.handle(err, 'Error'))

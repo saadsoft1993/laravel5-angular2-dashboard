@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ColumnData} from './helpers/ColumnData';
+import {ColumnSettings} from '../helpers/ColumnSettings';
 
 @Component({
     selector: '[app-table-body]',
@@ -8,6 +8,6 @@ import {ColumnData} from './helpers/ColumnData';
 })
 
 export class TableBodyComponent<T> {
-    @Input() columnData: ColumnData[];
+    @Input() columnSettings: ColumnSettings[];
     @Input() rows: T[];
 }

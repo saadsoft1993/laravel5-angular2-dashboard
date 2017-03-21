@@ -1,0 +1,4 @@
+<div class="clickable" (click)="onClick()">
+    {{ settings.title }}
+    <i class="fa" [ngClass]="{'fa-sort': isDefault(), 'fa-sort-desc': isDesc(), 'fa-sort-asc': isAsc()}"></i>
+</div>
