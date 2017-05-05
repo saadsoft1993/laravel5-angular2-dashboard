@@ -4,7 +4,7 @@
             <ul class="sitebarleft-menu">
                 <li class="sitebarleft-menutitle">Main</li>
                 <li class="with-sub">
-                    <a uiSref="home" class="sitebarleft-mainitem">
+                    <a routerLink="/" class="sitebarleft-mainitem">
                         <span class="s-icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
                         <span class="s-text">Dashboard</span>
                     </a>
@@ -17,7 +17,7 @@
                         <span class="s-text">Settings</span>
                     </a>
                     <ul style="display: none;">
-                        <li><a uiSref="404">Site configuration</a></li>
+                        <li><a routerLink="/404">Site configuration</a></li>
                     </ul>
                 </li>
                 <li class="with-sub">
@@ -27,8 +27,8 @@
                         <span class="s-text">Users</span>
                     </a>
                     <ul style="display: none;">
-                        <li><a uiSref="users.form">Role</a></li>
-                        <li><a uiSref="users">Users</a></li>
+                        <li><a routerLink="/users/form">Role</a></li>
+                        <li><a routerLink="/users">Users</a></li>
                     </ul>
                 </li>
                 <li class="with-sub compact-hide">

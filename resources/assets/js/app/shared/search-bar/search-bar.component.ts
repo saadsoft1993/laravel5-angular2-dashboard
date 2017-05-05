@@ -1,5 +1,4 @@
-import {Component, Input, EventEmitter} from '@angular/core';
-import {Output} from '@angular/core/src/metadata/directives';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'app-search-bar',

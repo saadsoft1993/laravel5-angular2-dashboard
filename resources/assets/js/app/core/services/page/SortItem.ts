@@ -21,6 +21,8 @@ export class SortItem {
         }
     }
 
+
+
     public reset() {
         this.dir = SortItem.Default;
     }

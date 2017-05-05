@@ -2,7 +2,7 @@
 <div class="header">
     <nav class="navbar navbar-light">
         <div class="navbar-left">
-            <a class="navbar-brand" uiSref="home">
+            <a class="navbar-brand" routerLink="/">
                 <div class="logo"></div>
             </a>
             <div class="toggle-button dark sidebar-toggle-first float-xs-left hidden-md-up"
@@ -61,7 +61,7 @@
                 <!--</div>-->
                 <!--</li>-->
                 <li class="nav-item dropdown hidden-sm-down">
-                    <a class="nav-link" href="#" (click)="isCollapsedSettings = !isCollapsedSettings"
+                    <a class="nav-link pointer" (click)="isCollapsedSettings = !isCollapsedSettings"
                        [attr.aria-expanded]="!isCollapsedSettings">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
 
@@ -75,7 +75,7 @@
                             <i class="fa fa-cog" aria-hidden="true"></i> Settings
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" uiSref="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign
+                        <a class="dropdown-item" (click)="this.auth.logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign
                             out</a>
                     </div>
                 </li>
@@ -88,7 +88,7 @@
                 <!--</a>-->
                 <!--<div class="header-dropdownblock dropdown-menu" [ngbCollapse]="!isCollapsedSocial">-->
                 <!--<div class="a-grid">-->
-                <!--<div class="row row-sm">-->
+                <!--<div clamodel"momomodel row-sm">-->
                 <!--<div class="col-xs-4">-->
                 <!--<div class="a-item">-->
                 <!--</div>-->

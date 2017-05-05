@@ -1,6 +1,7 @@
-import {Component, Input, ViewChild, ComponentFactoryResolver} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ColumnSettings} from '../helpers/ColumnSettings';
-import {TableDataComponent} from '../td/table.data.component';
+import {PageService} from '../../../core/services/page/page.service';
+import {Model} from '../../../core/Model';
 
 @Component({
     selector: '[app-table-row]',
@@ -10,5 +11,6 @@ import {TableDataComponent} from '../td/table.data.component';
 
 export class TableRowComponent<T> {
     @Input() columnSettings: ColumnSettings[];
-    @Input() row: T;
+    @Input() model: Model;
+    @Input() service:PageService;
 }

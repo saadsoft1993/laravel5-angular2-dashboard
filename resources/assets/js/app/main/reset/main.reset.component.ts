@@ -1,20 +1,20 @@
 import {Component} from '@angular/core';
 import {ResetService} from '../services/reset.service';
 import {ToasterService} from 'angular2-toaster';
-import {StateService} from 'ui-router-ng2';
-import {ErrorHandler} from '../../core/services/error-handler.service';
+import {ErrorHandlerService} from '../../core/services/error-handler.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-main-reset',
     templateUrl: './main.reset.html',
-    providers: [ResetService, ErrorHandler]
+    providers: [ResetService, ErrorHandlerService]
 })
 export class MainResetComponent {
 
     constructor(private reset: ResetService,
                 private toaster: ToasterService,
-                private state: StateService,
-                private errorHandler: ErrorHandler) {
+                private router: Router,
+                private errorHandler: ErrorHandlerService) {
     }
 
     private title = 'Reset password';
@@ -28,7 +28,7 @@ export class MainResetComponent {
             .reset(this.model.email)
             .subscribe(() => {
                 this.toaster.pop('success', this.title, 'In your email message has been sent, follow the instructions');
-                return this.state.go('home');
+                this.router.navigate(['login']);
             }, error => {
                 this.errors = error;
                 this.errorHandler.handle(error, this.title)

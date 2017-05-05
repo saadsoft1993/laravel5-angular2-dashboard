@@ -1,6 +1,10 @@
 import {ColumnSettings} from '../helpers/ColumnSettings';
-import {Input} from '@angular/core/src/metadata/directives';
-export class TableBaseDataComponent {
-    row: any;
+import {PageService} from '../../../core/services/page/page.service';
+import {Model} from '../../../core/Model';
+import {Injector} from '@angular/core';
+export abstract class TableBaseDataComponent {
+    model: Model;
     settings: ColumnSettings;
+    service:PageService;
+    injector:Injector;
 }

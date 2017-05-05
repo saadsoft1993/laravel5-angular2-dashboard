@@ -1,9 +1,7 @@
-import {Component, Input, Output, EventEmitter, ComponentFactoryResolver, QueryList} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ComponentFactoryResolver, QueryList, ViewChildren} from '@angular/core';
 import {SortItem} from '../../../core/services/page/SortItem';
 import {ColumnSettings} from '../helpers/ColumnSettings';
 import {DataContainerDirective} from '../data-container.directive';
-import {ViewChild, ViewChildren} from '@angular/core/src/metadata/di';
-import {TableBaseDataComponent} from '../data-components/table.base-data.component';
 import {TableHeadBaseComponent} from './elements/table.head.base.component';
 
 @Component({

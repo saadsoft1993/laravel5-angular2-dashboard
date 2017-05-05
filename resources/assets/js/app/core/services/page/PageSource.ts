@@ -1,8 +1,8 @@
-import {StateService} from 'ui-router-ng2';
 import {Subject, Observable} from 'rxjs';
 import {SortItem} from './SortItem';
-import {GetData} from './GetData';
+import {GetData, GetDataParams} from './GetData';
 import {PageMeta} from './PageMeta';
+import {Router} from '@angular/router';
 
 export class PageSource {
     private items: any;
@@ -13,47 +13,40 @@ export class PageSource {
     private pageStream = new Subject<number>();
     private query: string;
 
-    constructor(private tag: string, private getData: GetData, private state: StateService, private pageUrl: boolean) {
+    constructor(private tag: string, private getData: GetData) {
         this.sortSource = new Subject<SortItem>()
             .debounceTime(100)
             .map(sortItem => {
                 this.sort = sortItem;
-                return {sort: sortItem, page: 1, query: this.query};
+                return this.getParams();
             });
 
         this.searchSource = new Subject<string>()
             .debounceTime(300)
             .map(query => {
                 this.query = query;
-                return {sort: this.sort, page: 1, query: query}
+                return this.getParams();
             });
 
         this.items = this.pageStream
             .map(page => {
                 this.meta.page = page;
-                return {sort: this.sort, page: page, query: this.query};
+                return this.getParams();
             })
             .merge(this.sortSource, this.searchSource)
             .mergeMap(params => this.getData(params))
             .share();
+    }
 
-        this.items.subscribe(data => {
-            this.meta.set(data._meta);
-            if (this.pageUrl) {
-                let params = this.state.params;
-                params[this.tag] = this.meta.page;
-                this.state.transitionTo(this.state.current, params, {
-                    inherit: true,
-                    notify: true,
-                })
-            }
-        });
+    private getParams(): GetDataParams {
+        return new GetDataParams({tag: this.tag, sort: this.sort, page: this.meta.page, query: this.query});
+    }
+
+    setMeta(data: any) {
+        this.meta.set(data);
     }
 
     getPage(page: number) {
-        if (!this.meta.total && this.pageUrl) {
-            page = this.state.params[this.tag] || 1
-        }
         page = page || 1;
         this.pageStream.next(page);
     }

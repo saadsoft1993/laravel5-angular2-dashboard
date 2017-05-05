@@ -1,22 +1,22 @@
 import {Component} from '@angular/core';
 import {ResetService} from '../services/reset.service';
-import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
-import {ErrorHandler} from '../../core/services/error-handler.service';
+import {ErrorHandlerService} from '../../core/services/error-handler.service';
 
 @Component({
     selector: 'main-reset-confirmed',
     templateUrl: './main.reset.confirmed.html',
-    providers: [ResetService, ErrorHandler]
+    providers: [ResetService, ErrorHandlerService]
 })
 
 export class MainResetConfirmedComponent {
 
-    constructor(private state: StateService,
+    constructor(
+        // private state: StateService,
                 private toaster: ToasterService,
                 private reset: ResetService,
-                private errorHandler: ErrorHandler) {
-        this.params = state.params;
+                private errorHandler: ErrorHandlerService) {
+        // this.params = state.params;
     }
 
     private title = 'Reset password';
@@ -33,7 +33,7 @@ export class MainResetConfirmedComponent {
             .resetConfirmed(this.params.token, this.model.password, this.model.repeat_password)
             .subscribe(() => {
                 this.toaster.pop('success', this.title, 'Password successfully changed');
-                this.state.go('home');
+                // this.state.go('home');
             }, error => {
                 this.errors = error;
                 this.errorHandler.handle(error, this.title)

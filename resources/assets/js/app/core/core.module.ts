@@ -1,6 +1,4 @@
-import {NgModule, Optional, SkipSelf} from '@angular/core';
-import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy, CommonModule} from '@angular/common';
-
+import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
 import {HeaderComponent} from './sidebar/header/header.component';
 import {TemplateOptionsComponent} from './sidebar/template-options/template-options.component';
 import {SidebarLeftComponent} from './sidebar/sidebar-left/sidebar-left.component';
@@ -11,53 +9,34 @@ import {BlankLayout} from './layouts/blank/blank.layout';
 import {DefaultLayout} from './layouts/default/default.layout';
 import {ToasterModule} from 'angular2-toaster';
 import {SlimScrollModule} from 'ng2-slimscroll';
-import {RestangularModule} from 'ng2-restangular';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {UIRouterModule} from 'ui-router-ng2';
-import {CORE_STATES} from './core.states';
-import {PageService} from './services/page/page.service';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule, Routes} from '@angular/router';
+import {Http, HttpModule, RequestOptions, XHRBackend} from '@angular/http';
+import {ErrorHandlerService} from './services/error-handler.service';
+import {HttpService} from './services/http.service';
+
+const coreRoutes: Routes = [];
 
 @NgModule({
     imports: [
         ToasterModule,
         SharedModule,
         SlimScrollModule,
-        RestangularModule.forRoot((RestangularProvider) => {
-                RestangularProvider.setBaseUrl('/api/v1');
-                RestangularProvider.setFullResponse(true);
-
-                RestangularProvider.addResponseInterceptor((data, operation, what, url, response) => {
-                    if (operation === 'getList') {
-                        data.data._meta = {
-                            total: data.total,
-                            per_page: data.per_page,
-                            current_page: data.current_page,
-                        };
-                        return data.data;
-                    }
-                    return data;
-                });
-            }
-        ),
         NgbModule.forRoot(),
-        UIRouterModule.forRoot({
-            states: CORE_STATES,
-            otherwise: '404',
-        }),
+        HttpModule,
+        RouterModule.forRoot(coreRoutes)
     ],
 
     providers: [
         AuthService,
-        PageService,
+        ErrorHandlerService,
         {
-            provide: APP_BASE_HREF,
-            useValue: '/',
-            // includeHash: true
-        },
-        {
-            provide: LocationStrategy,
-            useClass: HashLocationStrategy
+            provide: Http,
+            useFactory: (backend: XHRBackend, options: RequestOptions, error: ErrorHandlerService, auth: AuthService) => {
+                return new HttpService(backend, options, error, auth);
+            },
+            deps: [XHRBackend, RequestOptions, ErrorHandlerService, AuthService]
         }
     ],
 
@@ -87,8 +66,7 @@ import {SharedModule} from '../shared/shared.module';
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         if (parentModule) {
-            throw new Error(
-                'CoreModule is already loaded. Import it in the AppModule only');
+            throw new Error('CoreModule is already loaded. Import it in the AppModule only');
         }
     }
 }

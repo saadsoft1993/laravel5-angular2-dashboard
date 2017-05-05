@@ -13,12 +13,22 @@ import {TableItemsDataComponent} from '../../shared/table/data-components/table.
     templateUrl: './user.list.html'
 })
 export class UserListComponent {
-    public constructor(private userService: UserService) {
+    public constructor(public userService: UserService) {
     }
 
     readonly columns: ColumnSettings[] = [
-        {title: 'ID', prop: 'id', headComponent: TableHeadSortableComponent, bodyComponent: TableRawDataComponent},
-        {title: 'Name', prop: 'name', headComponent: TableHeadSortableComponent, bodyComponent: TableRawDataComponent},
+        {
+            title: 'ID',
+            prop: 'id',
+            headComponent: TableHeadSortableComponent,
+            bodyComponent: TableRawDataComponent
+        },
+        {
+            title: 'Name',
+            prop: 'name',
+            headComponent: TableHeadSortableComponent,
+            bodyComponent: TableRawDataComponent
+        },
         {
             title: 'Email',
             prop: 'email',
@@ -28,15 +38,9 @@ export class UserListComponent {
         {
             title: 'Created at',
             prop: 'created_at',
-            headComponent: TableHeadBaseComponent,
+            headComponent: TableHeadSortableComponent,
             bodyComponent: TableRawDataComponent
         },
         {title: 'Actions', headComponent: TableHeadBaseComponent, bodyComponent: TableItemsDataComponent},
     ];
-
-    // readonly
-
-    readonly tableData: GetData = params => this.userService.getAll(params);
-
-
 }

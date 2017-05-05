@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
-import {ErrorHandler} from '../../core/services/error-handler.service';
+import {ErrorHandlerService} from '../../core/services/error-handler.service';
+import {LoginService} from '../services/login.service';
 
 
 @Component({
     selector: 'app-main-login',
     templateUrl: './main.login.html',
-    providers: [AuthService, ErrorHandler]
+    providers: [AuthService, ErrorHandlerService]
 })
 
 export class MainLoginComponent {
-
     private title: string = 'Sign in';
     public model = {
         email: '',
@@ -20,21 +19,12 @@ export class MainLoginComponent {
     };
     public errors = {};
 
-    public constructor(private auth: AuthService,
-                       private state: StateService,
-                       private toaster: ToasterService,
-                       private errorHandler: ErrorHandler) {
+    public constructor(private login: LoginService, private toaster: ToasterService) {
     }
 
     public submit() {
-        this.auth
-            .login(this.model.email, this.model.password)
-            .subscribe(() => {
-                this.toaster.pop('success', this.title, 'Login successful');
-                this.state.go('home');
-            }, error => {
-                this.errors = error;
-                this.errorHandler.handle(error, this.title)
-            });
+        this.login.login(this.model.email, this.model.password).subscribe(() => {
+            this.toaster.pop('success', this.title, 'Login successful');
+        });
     }
 }

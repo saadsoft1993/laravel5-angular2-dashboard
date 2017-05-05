@@ -1,5 +1,5 @@
 export class PageMeta {
-    public page: number;
+    public page = 1;
     public total: number;
     public perPage: number;
 

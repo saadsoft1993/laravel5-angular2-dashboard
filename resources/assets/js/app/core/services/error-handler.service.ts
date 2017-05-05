@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ToasterService} from 'angular2-toaster';
 
 @Injectable()
-export class ErrorHandler {
+export class ErrorHandlerService {
     constructor(private toaster: ToasterService) {
     }
 

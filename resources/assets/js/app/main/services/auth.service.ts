@@ -1,18 +1,27 @@
-import {Injectable, EventEmitter} from '@angular/core';
-import {Restangular} from 'ng2-restangular';
+import {Injectable, EventEmitter, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ServiceException} from '../../core/exception/service.exception';
+import {Http} from '@angular/http';
+import {ApiService} from '../../core/services/api.service';
+import {Router} from '@angular/router';
+import {PageService} from '../../core/services/page/page.service';
+import {ToasterService} from 'angular2-toaster';
+import {LoginService} from './login.service';
 
 @Injectable()
 export class AuthService {
 
-    public storageKey = 'token';
-    public authUnauthorized$: EventEmitter<null>;
-    public authForbidden$: EventEmitter<null>;
+    protected readonly url: string = 'auth';
 
-    constructor(private restangular: Restangular) {
-        this.authUnauthorized$ = new EventEmitter();
-        this.authForbidden$ = new EventEmitter();
+    private token: string;
+
+    public readonly storageKey = 'token';
+    public readonly authUnauthorized$ = new EventEmitter<null>();
+    public readonly authForbidden$ = new EventEmitter<null>();
+    public readonly authenticated$ = new EventEmitter<null>();
+
+
+    constructor(private router: Router) {
     }
 
     public isAuthenticated(): boolean {
@@ -20,38 +29,23 @@ export class AuthService {
     }
 
     public getToken(): string {
-        return localStorage.getItem(this.storageKey);
+        return this.token || (this.token = localStorage.getItem(this.storageKey));
     }
 
     public setToken(token: string): void {
+        this.token = token;
         localStorage.setItem(this.storageKey, token);
-    }
-
-    public login(email: string, password: string): Observable<any> {
-        return this.all()
-            .post({email: email, password: password})
-            .map(response => {
-                response = response.json();
-                let token = response.token;
-                if (!token) {
-                    throw new ServiceException('Invalid token');
-                }
-                this.setToken(token);
-                return response;
-            })
-            .catch(error => Observable.throw(error.json()));
+        this.authenticated$.emit();
     }
 
     public logout(): void {
         localStorage.removeItem(this.storageKey);
+        this.token = null;
         this.authUnauthorized$.emit();
+        this.router.navigate(['login']);
     }
 
     public forbidden(): void {
         this.authForbidden$.emit();
-    }
-
-    private all() {
-        return this.restangular.all('auth');
     }
 }

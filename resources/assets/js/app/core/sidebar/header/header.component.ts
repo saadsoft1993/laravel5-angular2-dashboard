@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 import {SidebarService} from '../../services/sidebar.service';
+import {AuthService} from '../../../main/services/auth.service';
 
 @Component({
     selector: 'header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
     public isToggleOprionsButtonActive = false;
 
-    constructor(private sidebarService:SidebarService) {
+    constructor(private sidebarService: SidebarService, protected auth: AuthService) {
     }
 
     public ngOnInit() {
@@ -30,8 +31,6 @@ export class HeaderComponent implements OnInit {
             }
         });
     }
-
-  
 
 
     public toggleOptions() {

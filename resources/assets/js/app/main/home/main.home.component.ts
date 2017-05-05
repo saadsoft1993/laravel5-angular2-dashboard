@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Restangular} from 'ng2-restangular';
+import {Http} from '@angular/http';
 
 @Component({
     // moduleId: module.id,
@@ -10,29 +10,26 @@ export class MainHomeComponent {
 
     public test;
 
-    public constructor(private rest: Restangular) {
-
+    public constructor(private http: Http) {
     }
 
-    public submit(type:string): void {
-        let handler = (resp)=>{
-            console.log(resp);
+    public submit(type: string): void {
+        let handler = (resp) => {
             this.test = resp.json();
         };
 
-        switch (type){
+        switch (type) {
             case 'post':
-                this.rest.all('test').post({test: 'test'}).subscribe(handler);
+                this.http.post('test', {test: 'test'}).subscribe(handler);
                 break;
 
             case 'get':
-                this.rest.all('test').get('').subscribe(handler);
+                this.http.get('test').subscribe(handler);
                 break;
 
             default:
-                this.rest.all(type).get('').subscribe(handler);
+                this.http.get(type).subscribe(handler);
                 break;
         }
     }
-
 }

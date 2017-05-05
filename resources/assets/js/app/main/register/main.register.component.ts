@@ -1,25 +1,25 @@
 import {Component} from '@angular/core';
 import {RegisterService} from '../services/regiser.service';
-import {StateService} from 'ui-router-ng2';
 import {ToasterService} from 'angular2-toaster';
-import {ErrorHandler} from '../../core/services/error-handler.service';
-import {User} from '../../user/user.model';
+import {ErrorHandlerService} from '../../core/services/error-handler.service';
+import {Router} from '@angular/router';
+import {RegisterUser} from './register-user.model';
 
 @Component({
     selector: 'app-main-register',
     templateUrl: './main.register.html',
-    providers: [RegisterService, ErrorHandler]
+    providers: [RegisterService, ErrorHandlerService]
 })
 export class MainRegisterComponent {
 
     private title = 'Sign up';
-    public model: User = new User;
+    public model: RegisterUser = new RegisterUser;
     public errors = {};
 
     public constructor(private register: RegisterService,
-                       private state: StateService,
+                       private router: Router,
                        private toaster: ToasterService,
-                       private errorHandler: ErrorHandler) {
+                       private errorHandler: ErrorHandlerService) {
     }
 
     public submit() {
@@ -27,7 +27,7 @@ export class MainRegisterComponent {
             .register(this.model)
             .subscribe(() => {
                 this.toaster.pop('success', this.title, 'Registration successful');
-                this.state.go('login');
+                this.router.navigate(['login']);
             }, error => {
                 this.errors = error;
                 this.errorHandler.handle(error, this.title)
