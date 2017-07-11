@@ -1,12 +1,5 @@
-import {Injectable, EventEmitter, Injector} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ServiceException} from '../../core/exception/service.exception';
-import {Http} from '@angular/http';
-import {ApiService} from '../../core/services/api.service';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Router} from '@angular/router';
-import {PageService} from '../../core/services/page/page.service';
-import {ToasterService} from 'angular2-toaster';
-import {LoginService} from './login.service';
 
 @Injectable()
 export class AuthService {

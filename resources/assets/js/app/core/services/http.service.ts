@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
 import {ConnectionBackend, Http, Request, RequestOptions, RequestOptionsArgs, Response} from '@angular/http';
 import {AuthService} from '../../main/services/auth.service';
-import {Observable} from 'rxjs';
 import {ErrorHandlerService} from './error-handler.service';
+import {zip} from 'rxjs/observable/zip';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class HttpService extends Http {
@@ -12,7 +13,7 @@ export class HttpService extends Http {
     constructor(_backend: ConnectionBackend, _defaultOptions: RequestOptions, private errorHandler: ErrorHandlerService, private auth: AuthService) {
         super(_backend, _defaultOptions);
         this.setHeaders();
-        this.auth.authUnauthorized$.merge(this.auth.authenticated$).subscribe(() => {
+        zip(this.auth.authUnauthorized$, this.auth.authenticated$).subscribe(() => {
             this.setHeaders();
         })
     }

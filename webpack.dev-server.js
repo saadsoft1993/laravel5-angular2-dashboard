@@ -7,7 +7,7 @@ let common = fs.existsSync(__dirname + '/webpack.config.js') ? require(__dirname
 
 module.exports = webpackMerge(common, {
     output: {
-        publicPath: 'http://localhost:8080/',
+        publicPath: 'http://localhost:8080/'
     },
 
     devServer: {

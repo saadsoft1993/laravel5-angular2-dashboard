@@ -19,7 +19,7 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
         this.toggleCompactSubscription = this.sidebarService.toggleCompactLeftSidebarEvent$
             .subscribe(() => {
                 this.toggleCompact();
-            })
+            });
         this.toggleCompactOnMobileSubscription = this.sidebarService.toggleCompactLeftSidebarMobileEvent$
             .subscribe(() => {
                 this.toggleCompactOnMobile();
@@ -95,14 +95,14 @@ export class SidebarLeftComponent implements OnInit, OnDestroy{
         $('.sitebarleft ul > li:not(.with-sub)').removeClass('active');
         url = window.location;
         element = $('.sitebarleft ul > li > a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
+            return (<HTMLAnchorElement>this).href == url || url.href.indexOf((<HTMLAnchorElement>this).href) == 0;
         });
         element.parent().addClass('active');
 
         $('.sitebarleft li.with-sub').removeClass('active').find('>ul').hide();
         url = window.location;
         element = $('.sitebarleft ul li ul li a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
+            return (<HTMLAnchorElement>this).href == url || url.href.indexOf((<HTMLAnchorElement>this).href) == 0;
         });
         element.parent().addClass('active');
         element.parent().parent().parent().addClass('active');

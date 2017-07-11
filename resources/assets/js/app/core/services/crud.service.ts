@@ -33,11 +33,11 @@ export abstract class CrudService extends PageService {
         return this.handleRequest(this.http.delete(this.getModelUrl(model)));
     }
 
-    protected getAll(params: GetDataParams): Observable<Model> {
+    protected getAll(params: GetDataParams) {
         return this.handleRequest(super.getAll(params).map(i => i.map(this.makeModel)));
     }
 
-    private handleRequest(obs: Observable<Response>) {
+    private handleRequest(obs: Observable<Response>): Observable<any> {
         let subject = new ReplaySubject();
         obs.subscribe(data => {
             subject.next(data)

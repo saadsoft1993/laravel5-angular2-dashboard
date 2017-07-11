@@ -109,7 +109,7 @@ export class TemplateOptionsComponent {
             return (css.match(/(^|\s)skin-\S+/g) || []).join(' ');
         });
 
-        $(body).addClass(setting);
+        $(body).addClass(<string>setting);
         if (setting == 'skin-default' || setting == 'skin-2' || setting == 'skin-3' || setting == 'skin-6') {
             $('.header .navbar').removeClass('navbar-dark').addClass('navbar-light');
         } else {
@@ -147,14 +147,14 @@ export class TemplateOptionsComponent {
         $('.sitebarleft ul > li:not(.with-sub)').removeClass('active');
         url = window.location;
         element = $('.sitebarleft ul > li > a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
+            return (<HTMLAnchorElement>this).href == url || url.href.indexOf((<HTMLAnchorElement>this).href) == 0;
         });
         element.parent().addClass('active');
 
         $('.sitebarleft li.with-sub').removeClass('active').find('>ul').hide();
         url = window.location;
         element = $('.sitebarleft ul li ul li a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
+            return (<HTMLAnchorElement>this).href == url || url.href.indexOf((<HTMLAnchorElement>this).href) == 0;
         });
         element.parent().addClass('active');
         element.parent().parent().parent().addClass('active');
